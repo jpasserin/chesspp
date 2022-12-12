@@ -6,6 +6,8 @@ class Square;
 class Board;
 
 class Piece
+/* Abstract Piece class
+*/
 {
 
 public:
@@ -19,7 +21,7 @@ public:
 		std::cout << "Piece Destroyed" << std::endl;
 	}
 
-	std::vector<Square*> virtual GetLegalMove(Board* board, Square* square) = 0;
+	std::vector<Square*> virtual GetLegalMove(Board* board, Square* square) = 0; // Returns the legal squares to move the piece to
 	friend std::ostream& operator<<(std::ostream& os, const Piece& piece);
 };
 

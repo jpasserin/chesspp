@@ -8,5 +8,5 @@ public:
 	std::vector<Piece*> Pieces;
 
 public:
-	Rook* AddRook();
+	Rook* AddRook(); // Add a Rool piece to this Color
 };

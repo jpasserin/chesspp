@@ -7,14 +7,14 @@
 class Board
 {
 public:
-	int RowCount;
-	int ColCount;
+	int RowCount; // Number of Rows
+	int ColCount; // Number of Columns
 private:
-	Color Colors[2];
+	Color Colors[2]; // Whites and Blacks
 public:
-	std::vector<Square> Squares;
+	std::vector<Square> Squares; // Squares on the board, size = RowCount * ColCount
 
 public:
 	Board();	
-	Square* GetSquare(int row, int col);
+	Square* GetSquare(int row, int col); // Returns a specific Square ofd the board
 };

@@ -4,7 +4,9 @@
 Board::Board()
 	: RowCount(8), ColCount(8)
 {
-	std::cout << "New Board" << std::endl;
+	// Default constructor creates a standard game
+	// 8 x 8 board, two colors, 32 standard pieces
+	std::cout << "New Standard Game" << std::endl;
 
 	Squares.reserve(RowCount * ColCount);
 	for (int row = 0; row < RowCount; row++)
@@ -15,7 +17,7 @@ Board::Board()
 	Color blacks = Color();
 	//Colors = Color[whites, blacks];
 
-	//Rook *rook = new Rook();
+	// Creates a new Rook for white and put it on a specific square
 	Piece* rook = whites.AddRook();
 	Square* square = GetSquare(4, 4);
 	square->SetPiece(rook);
