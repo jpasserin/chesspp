@@ -6,6 +6,8 @@ std::shared_ptr<Rook> Material::AddRook()
 	//Pieces.push_back(rook);
 
 	std::shared_ptr<Rook> rook = std::make_shared<Rook>();
+
+
 	Pieces.push_back(rook.get());
 
 	return rook;

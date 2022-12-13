@@ -4,6 +4,7 @@
 
 class Square;
 class Board;
+class Material;
 
 class Piece
 /* Abstract Piece class
@@ -11,7 +12,8 @@ class Piece
 {
 
 public:
-	Piece() 
+
+	Piece()
 	{
 		std::cout << "Piece Created" << std::endl;
 	}

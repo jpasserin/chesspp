@@ -24,7 +24,7 @@
     <ClCompile Include="sources\square.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\color.cpp">
+    <ClCompile Include="sources\material.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sources\piece.cpp">
@@ -41,7 +41,7 @@
     <ClInclude Include="sources\piece.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\color.h">
+    <ClInclude Include="sources\material.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
