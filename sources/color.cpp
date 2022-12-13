@@ -1,6 +1,6 @@
 #include "color.h"
 
-Rook* Color::AddRook()
+Rook* Material::AddRook()
 {
 	Rook* rook = new Rook();
 	Pieces.push_back(rook);

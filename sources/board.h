@@ -10,7 +10,7 @@ public:
 	int RowCount; // Number of Rows
 	int ColCount; // Number of Columns
 private:
-	Color Colors[2]; // Whites and Blacks
+	Material Colors[2]; // Whites and Blacks
 public:
 	std::vector<Square> Squares; // Squares on the board, size = RowCount * ColCount
 

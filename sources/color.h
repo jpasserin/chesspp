@@ -2,7 +2,7 @@
 
 #include "piece.h"
 
-class Color
+class Material
 {
 public:
 	std::vector<Piece*> Pieces;

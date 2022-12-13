@@ -13,8 +13,8 @@ Board::Board()
 		for (int col = 0; col < ColCount; col++)
 			Squares.emplace_back(row, col);
 	
-	Color whites = Color();
-	Color blacks = Color();
+	Material whites = Material();
+	Material blacks = Material();
 	//Colors = Color[whites, blacks];
 
 	// Creates a new Rook for white and put it on a specific square
