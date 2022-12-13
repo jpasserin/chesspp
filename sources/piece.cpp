@@ -3,7 +3,7 @@
 #include "square.h"
 
 
-std::vector<Square*> Rook::GetLegalMove(Board* board, Square* square) 
+std::vector<Square*> Rook::GetLegalMoves(Board* board, Square* square) const
 {
 	std::vector<Square*> legalSquares;
 	Square* returnSquare;

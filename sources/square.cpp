@@ -16,12 +16,12 @@ bool Square::IsEmpty()
 	return CurrentPiece == nullptr;
 }
 
-Piece* Square::GetPiece()
+std::shared_ptr<Piece> Square::GetPiece()
 {
 	return CurrentPiece;
 }
 
-bool Square::SetPiece(Piece* piece)
+bool Square::SetPiece(std::shared_ptr<Piece> piece)
 {
 	if (!IsEmpty())
 		return false;

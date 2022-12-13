@@ -14,11 +14,11 @@ int main()
 	std::cout << typeid(*square).name() << std::endl;
 	
 	// Get the piece
-	Piece* myPiece = square->GetPiece();
+	Piece* myPiece = square->GetPiece().get();
 	std::cout << *myPiece << std::endl;
 
 	// Get legal squares to move that piece to
-	auto legalSquares = myPiece->GetLegalMove(&board, square);
+	auto legalSquares = myPiece->GetLegalMoves(&board, square);
 	std::cout << legalSquares.size() << std::endl;
 	
 	// Prints out all the legal squares

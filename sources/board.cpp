@@ -18,7 +18,8 @@ Board::Board()
 	//Colors = Color[whites, blacks];
 
 	// Creates a new Rook for white and put it on a specific square
-	Piece* rook = whites.AddRook();
+	std::shared_ptr<Piece> rook = whites.AddRook();
+	//Piece* rook = whites.AddRook().get();
 	Square* square = GetSquare(4, 4);
 	square->SetPiece(rook);
 }

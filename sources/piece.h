@@ -21,13 +21,13 @@ public:
 		std::cout << "Piece Destroyed" << std::endl;
 	}
 
-	std::vector<Square*> virtual GetLegalMove(Board* board, Square* square) = 0; // Returns the legal squares to move the piece to
+	std::vector<Square*> virtual GetLegalMoves(Board* board, Square* square) const = 0; // Returns the legal squares to move the piece to
 	friend std::ostream& operator<<(std::ostream& os, const Piece& piece);
 };
 
 class Rook : public Piece
 {
 public:
-	std::vector<Square*> virtual GetLegalMove(Board* board, Square* square);
+	std::vector<Square*> virtual GetLegalMoves(Board* board, Square* square) const;
 };
 
