@@ -13,7 +13,8 @@ class Piece
 
 public:
 	Material* PieceMaterial;
-	const char* Symbol = "x";
+	Square* PieceSquare;
+	char Symbol = 'x';
 
 	Piece()
 	{
@@ -31,14 +32,14 @@ public:
 	}
 
 	std::vector<Square*> virtual GetLegalMoves(Board* board, Square* square) const = 0; // Returns the legal squares to move the piece to
-	const char* GetSymbol() const;
+	char GetSymbol() const;
 	friend std::ostream& operator<<(std::ostream& os, const Piece& piece);
 };
 
 class Rook : public Piece
 {
 public:
-	const char* Symbol = "R";
+	char Symbol = 'R';
 
 	std::vector<Square*> virtual GetLegalMoves(Board* board, Square* square) const;
 };

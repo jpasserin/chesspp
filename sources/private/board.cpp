@@ -17,10 +17,14 @@ Board::Board()
 	Materials[1] = new Material("Black");
 
 	// Creates a new Rook for white and put it on a specific square
-	std::shared_ptr<Piece> rook = Materials[0]->AddRook();
-	//Piece* rook = whites.AddRook().get();
-	Square* square = GetSquare(4, 4);
-	square->SetPiece(rook);
+	Piece* rook = Materials[0]->AddRook();
+	AddPiece(rook, GetSquare(2, 1));
+}
+
+
+Material* Board::GetMaterial(int index) const
+{
+	return Materials[index];
 }
 
 Square* Board::GetSquare(int row, int col) 
@@ -28,13 +32,46 @@ Square* Board::GetSquare(int row, int col)
 	return &Squares[row * ColCount + col];
 }
 
+Square* Board::GetSquare(Piece* piece)
+{
+	for (auto m : PieceMap)
+	{
+		if (piece == m.second)
+			return m.first;
+	}
+
+	return nullptr;
+}
+
+Piece* Board::GetPiece(Square* square)
+{
+	if (PieceMap.find(square) == PieceMap.end())
+		return nullptr;
+
+	return PieceMap[square];
+}
+
+bool Board::AddPiece(Piece* piece, Square* square)
+{
+	if (PieceMap.find(square) != PieceMap.end())
+		return false;
+
+	PieceMap[square] = piece;
+}
+
 void Board::Draw() 
 {
+	char s;
 	for (int row = RowCount - 1; row >= 0; row--)
 	{
 		for (int col = 0; col < ColCount; col++)
 		{
-			const char* s = GetSquare(row, col)->GetSymbol();
+			Piece* piece = GetPiece(GetSquare(row, col));
+			if (piece)
+				s = piece->GetSymbol();
+			else
+				s = '.';
+
 			std::cout << s << " ";
 		}
 		std::cout << std::endl;

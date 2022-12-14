@@ -35,7 +35,7 @@ std::vector<Square*> Rook::GetLegalMoves(Board* board, Square* square) const
 	return legalSquares;
 }
 
-const char* Piece::GetSymbol() const
+char Piece::GetSymbol() const
 {
 	return Symbol;
 }

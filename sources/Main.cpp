@@ -1,30 +1,43 @@
 #include <iostream>
 #include "public/board.h"
 
-int main()
+void PlayGame()
 {
 	std::cout << "Let's start a game of chess!" << std::endl;
-	
+
 	// Creates a standard board game
 	Board board = Board();
 
-	// Get a square (I know there is a piece here)
-	Square* square = board.GetSquare(4, 4);
-	std::cout << *square << std::endl;
-	
-	// Get the piece
-	Piece* myPiece = square->GetPiece().get();
-	std::cout << *myPiece << *(myPiece->PieceMaterial) << std::endl;
+	Material* white = board.GetMaterial(0);
+	auto whitePieces = white->GetPieces();
+	std::cout << whitePieces.size() << std::endl;
 
-	// Get legal squares to move that piece to
-	auto legalSquares = myPiece->GetLegalMoves(&board, square);
-	std::cout << legalSquares.size() << std::endl;
-	
-	// Prints out all the legal squares
+	auto firstPiece = whitePieces[0];
+	Square* square = board.GetSquare(firstPiece);
+
+	std::cout << *firstPiece << " - " << firstPiece->PieceMaterial->Name << " - " << *square << std::endl;
+
+	auto legalSquares = firstPiece->GetLegalMoves(&board, square);
 	for (Square* legalSquare : legalSquares)
+	{
 		std::cout << *legalSquare << std::endl;
+
+	}
+
+	for (int i = 0; i < 10; i++)
+	{
+		//Move Piece
+	}
 
 	board.Draw();
 
+}
+
+int main()
+{
+
+	
+
+	PlayGame();
 	std::cin.get();
 }
