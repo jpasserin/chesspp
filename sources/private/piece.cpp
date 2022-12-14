@@ -1,6 +1,6 @@
-#include "piece.h"
-#include "board.h"
-#include "square.h"
+#include "../public/piece.h"
+#include "../public/board.h"
+#include "../public/square.h"
 
 
 std::vector<Square*> Rook::GetLegalMoves(Board* board, Square* square) const

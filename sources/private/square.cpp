@@ -1,4 +1,4 @@
-#include "square.h"
+#include "../public/square.h"
 
 Square::Square(int row, int col): Row(row), Col(col), CurrentPiece(nullptr) {}
 

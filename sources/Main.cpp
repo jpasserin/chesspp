@@ -1,5 +1,5 @@
 #include <iostream>
-#include "board.h"
+#include "public/board.h"
 
 int main()
 {
