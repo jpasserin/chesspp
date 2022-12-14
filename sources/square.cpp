@@ -11,12 +11,12 @@ SquareColor Square::Color() const
 		return COLOR_DARK;
 }
 
-bool Square::IsEmpty()
+bool Square::IsEmpty() const
 {
 	return CurrentPiece == nullptr;
 }
 
-std::shared_ptr<Piece> Square::GetPiece()
+std::shared_ptr<Piece> Square::GetPiece() const
 {
 	return CurrentPiece;
 }
@@ -39,9 +39,18 @@ bool Square::RemovePiece()
 	return true;
 }
 
+const char* Square::GetSymbol() const
+{
+	if (IsEmpty())
+		return ".";
+	else
+		return "X";
+}
+
 std::ostream& operator<<(std::ostream& os, const Square& square)
 {
-	os << "Square" << square.Row << square.Col;
-	//typeid(piece).name();
+	//question? is there a way to format strings?
+	// in python I can write f"Square [ {Row} | {Col} ]"
+	os << "Square [ " << square.Row << " | " << square.Col << " ]";
 	return os;
 }

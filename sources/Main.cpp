@@ -11,11 +11,10 @@ int main()
 	// Get a square (I know there is a piece here)
 	Square* square = board.GetSquare(4, 4);
 	std::cout << *square << std::endl;
-	std::cout << typeid(*square).name() << std::endl;
 	
 	// Get the piece
 	Piece* myPiece = square->GetPiece().get();
-	std::cout << *myPiece << std::endl;
+	std::cout << *myPiece << *(myPiece->PieceMaterial) << std::endl;
 
 	// Get legal squares to move that piece to
 	auto legalSquares = myPiece->GetLegalMoves(&board, square);
@@ -24,6 +23,8 @@ int main()
 	// Prints out all the legal squares
 	for (Square* legalSquare : legalSquares)
 		std::cout << *legalSquare << std::endl;
+
+	board.Draw();
 
 	std::cin.get();
 }

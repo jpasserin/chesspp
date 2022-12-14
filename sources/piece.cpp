@@ -35,8 +35,13 @@ std::vector<Square*> Rook::GetLegalMoves(Board* board, Square* square) const
 	return legalSquares;
 }
 
+const char* Piece::GetSymbol() const
+{
+	return Symbol;
+}
+
 std::ostream& operator<<(std::ostream& os, const Piece& piece)
 {
-	os << "My Piece Name" << typeid(piece).name();
+	os << typeid(piece).name();
 	return os;
 }
