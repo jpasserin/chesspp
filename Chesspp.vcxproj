@@ -144,16 +144,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="sources\Main.cpp" />
-    <ClCompile Include="sources\board.cpp" />
-    <ClCompile Include="sources\material.cpp" />
-    <ClCompile Include="sources\piece.cpp" />
-    <ClCompile Include="sources\square.cpp" />
+    <ClCompile Include="sources\private\board.cpp" />
+    <ClCompile Include="sources\private\material.cpp" />
+    <ClCompile Include="sources\private\piece.cpp" />
+    <ClCompile Include="sources\private\square.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sources\board.h" />
-    <ClInclude Include="sources\material.h" />
-    <ClInclude Include="sources\piece.h" />
-    <ClInclude Include="sources\square.h" />
+    <ClInclude Include="sources\public\board.h" />
+    <ClInclude Include="sources\public\material.h" />
+    <ClInclude Include="sources\public\piece.h" />
+    <ClInclude Include="sources\public\square.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

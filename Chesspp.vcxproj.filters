@@ -18,30 +18,30 @@
     <ClCompile Include="sources\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\board.cpp">
+    <ClCompile Include="sources\private\board.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\square.cpp">
+    <ClCompile Include="sources\private\square.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\material.cpp">
+    <ClCompile Include="sources\private\material.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\piece.cpp">
+    <ClCompile Include="sources\private\piece.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sources\board.h">
+    <ClInclude Include="sources\public\board.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\square.h">
+    <ClInclude Include="sources\public\square.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\piece.h">
+    <ClInclude Include="sources\public\piece.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\material.h">
+    <ClInclude Include="sources\public\material.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
