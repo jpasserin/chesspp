@@ -91,7 +91,8 @@ std::vector<Square*> Knight::GetLegalMoves(Board* board, Square* square) const
 
 std::vector<Square*> Pawn::GetLegalMoves(Board* board, Square* square) const
 {
-	return GetDirectionMoves({ {0,1} }, board, square, PieceMaterial, false);
+	std::vector<std::pair<int, int>> directions = { {1,0}, };
+	return GetDirectionMoves(directions, board, square, PieceMaterial, false);
 }
 
 std::ostream& operator<<(std::ostream& os, const Piece& piece)
