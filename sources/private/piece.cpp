@@ -21,27 +21,57 @@ std::vector<Square*> Rook::GetLegalMoves(Board* board, Square* square) const
 	std::vector<Square*> legalSquares;
 
 	Square* returnSquare;
+	Piece* otherPiece;
+
 	for (int row = square->Row + 1; row < board->RowCount; row++)
 	{
 		returnSquare = board->GetSquare(row, square->Col);
+		otherPiece = board->GetPiece(returnSquare);
+		if (otherPiece)
+		{
+			if (otherPiece->PieceMaterial != PieceMaterial)
+				legalSquares.push_back(returnSquare);
+			break;
+		}
 		legalSquares.push_back(returnSquare);
 	}
 
 	for (int row = square->Row - 1; row >= 0; row--)
 	{
 		returnSquare = board->GetSquare(row, square->Col);
+		otherPiece = board->GetPiece(returnSquare);
+		if (otherPiece)
+		{
+			if (otherPiece->PieceMaterial != PieceMaterial)
+				legalSquares.push_back(returnSquare);
+			break;
+		}
 		legalSquares.push_back(returnSquare);
 	}
 
 	for (int col = square->Col + 1; col < board->ColCount; col++)
 	{
 		returnSquare = board->GetSquare(square->Row, col);
+		otherPiece = board->GetPiece(returnSquare);
+		if (otherPiece)
+		{
+			if (otherPiece->PieceMaterial != PieceMaterial)
+				legalSquares.push_back(returnSquare);
+			break;
+		}
 		legalSquares.push_back(returnSquare);
 	}
 
 	for (int col = square->Col - 1; col >= 0; col--)
 	{
 		returnSquare = board->GetSquare(square->Row, col);
+		otherPiece = board->GetPiece(returnSquare);
+		if (otherPiece)
+		{
+			if (otherPiece->PieceMaterial != PieceMaterial)
+				legalSquares.push_back(returnSquare);
+			break;
+		}
 		legalSquares.push_back(returnSquare);
 	}
 

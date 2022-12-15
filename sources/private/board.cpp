@@ -19,6 +19,9 @@ Board::Board()
 	// Creates a new Rook for white and put it on a specific square
 	Piece* rook = Materials[0]->AddRook();
 	AddPiece(rook, GetSquare(2, 1));
+
+	Piece* rook2 = Materials[0]->AddRook();
+	AddPiece(rook2, GetSquare(2, 3));
 }
 
 
