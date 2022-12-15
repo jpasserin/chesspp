@@ -3,6 +3,14 @@
 #include "../public/square.h"
 
 
+Square* Piece::GetRandomLegalMove(Board* board, Square* square) const
+{
+	std::vector<Square*> squares = GetLegalMoves(board, square);
+
+	int index = rand() % squares.size();
+	return squares[index];
+}
+
 std::vector<Square*> Rook::GetLegalMoves(Board* board, Square* square) const
 {
 	std::vector<Square*> legalSquares;
@@ -14,7 +22,7 @@ std::vector<Square*> Rook::GetLegalMoves(Board* board, Square* square) const
 		legalSquares.push_back(returnSquare);
 	}
 
-	for (int row = square->Row - 1; row > 0; row--)
+	for (int row = square->Row - 1; row >= 0; row--)
 	{
 		returnSquare = board->GetSquare(row, square->Col);
 		legalSquares.push_back(returnSquare);
@@ -26,7 +34,7 @@ std::vector<Square*> Rook::GetLegalMoves(Board* board, Square* square) const
 		legalSquares.push_back(returnSquare);
 	}
 
-	for (int col = square->Col - 1; col > 0; col--)
+	for (int col = square->Col - 1; col >= 0; col--)
 	{
 		returnSquare = board->GetSquare(square->Row, col);
 		legalSquares.push_back(returnSquare);
@@ -35,10 +43,6 @@ std::vector<Square*> Rook::GetLegalMoves(Board* board, Square* square) const
 	return legalSquares;
 }
 
-char Piece::GetSymbol() const
-{
-	return Symbol;
-}
 
 std::ostream& operator<<(std::ostream& os, const Piece& piece)
 {

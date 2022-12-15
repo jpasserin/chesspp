@@ -32,7 +32,8 @@ public:
 	}
 
 	std::vector<Square*> virtual GetLegalMoves(Board* board, Square* square) const = 0; // Returns the legal squares to move the piece to
-	char GetSymbol() const;
+	Square* GetRandomLegalMove(Board* board, Square* square) const;
+	virtual char GetSymbol() const { return Symbol; };
 	friend std::ostream& operator<<(std::ostream& os, const Piece& piece);
 };
 
@@ -41,6 +42,7 @@ class Rook : public Piece
 public:
 	char Symbol = 'R';
 
+	char GetSymbol() const override { return Symbol; };
 	std::vector<Square*> virtual GetLegalMoves(Board* board, Square* square) const;
 };
 

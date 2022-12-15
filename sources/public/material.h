@@ -12,6 +12,7 @@ public:
 
 	const char* GetName() const;
 	std::vector<Piece*> GetPieces();
+	Piece* GetRandomPiece();
 
 	Rook* AddRook(); // Add a Rool piece to this Color
 

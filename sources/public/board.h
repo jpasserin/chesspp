@@ -25,5 +25,7 @@ public:
 	Piece* GetPiece(Square* square); // Returns a specific Square ofd the board
 
 	bool AddPiece(Piece* piece, Square* square);
+	bool MovePiece(Piece* piece, Square* square);
+
 	void Draw();
 };

@@ -13,6 +13,12 @@ std::vector<Piece*> Material::GetPieces()
 	return Pieces;
 }
 
+Piece* Material::GetRandomPiece()
+{
+	int index = rand() % Pieces.size();
+	return Pieces[index];
+}
+
 Rook* Material::AddRook()
 {
 	//question: Can I write that in one line?

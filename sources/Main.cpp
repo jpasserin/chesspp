@@ -9,23 +9,25 @@ void PlayGame()
 	Board board = Board();
 
 	Material* white = board.GetMaterial(0);
-	auto whitePieces = white->GetPieces();
-	std::cout << whitePieces.size() << std::endl;
 
-	auto firstPiece = whitePieces[0];
-	Square* square = board.GetSquare(firstPiece);
+	Piece* randomPiece = white->GetRandomPiece();
+	Square* randomSquare = board.GetSquare(randomPiece);
 
-	std::cout << *firstPiece << " - " << firstPiece->PieceMaterial->Name << " - " << *square << std::endl;
+	std::cout << *randomPiece << " - " << randomPiece->PieceMaterial->Name << " - " << *randomSquare << std::endl;
 
-	auto legalSquares = firstPiece->GetLegalMoves(&board, square);
-	for (Square* legalSquare : legalSquares)
-	{
-		std::cout << *legalSquare << std::endl;
+	std::string legalSquares;
+	for (Square* legalSquare : randomPiece->GetLegalMoves(&board, randomSquare))
+		legalSquares += legalSquare->GetName() + " ";
 
-	}
+	std::cout << legalSquares << std::endl;
 
 	for (int i = 0; i < 10; i++)
 	{
+		randomPiece = white->GetRandomPiece();
+		randomSquare = board.GetSquare(randomPiece);
+		randomSquare = randomPiece->GetRandomLegalMove(&board, randomSquare);
+		std::cout << *randomPiece << " to " << *randomSquare << std::endl;
+		board.MovePiece(randomPiece, randomSquare);
 		//Move Piece
 	}
 

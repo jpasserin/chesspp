@@ -59,6 +59,14 @@ bool Board::AddPiece(Piece* piece, Square* square)
 	PieceMap[square] = piece;
 }
 
+bool Board::MovePiece(Piece* piece, Square* square)
+{
+	Square* oldSquare = GetSquare(piece);
+	PieceMap.erase(oldSquare);
+	PieceMap[square] = piece;
+	return true;
+}
+
 void Board::Draw() 
 {
 	char s;
