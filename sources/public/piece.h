@@ -64,3 +64,29 @@ public:
 	std::vector<Square*> virtual GetLegalMoves(Board* board, Square* square) const;
 };
 
+class King : public Piece
+{
+public:
+	char Symbol = 'K';
+
+	char GetSymbol() const override { return Symbol; };
+	std::vector<Square*> virtual GetLegalMoves(Board* board, Square* square) const;
+};
+
+class Knight : public Piece
+{
+public:
+	char Symbol = 'N';
+
+	char GetSymbol() const override { return Symbol; };
+	std::vector<Square*> virtual GetLegalMoves(Board* board, Square* square) const;
+}; 
+
+class Pawn : public Piece
+{
+public:
+	char Symbol = 'P';
+
+	char GetSymbol() const override { return Symbol; };
+	std::vector<Square*> virtual GetLegalMoves(Board* board, Square* square) const;
+};

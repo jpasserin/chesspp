@@ -18,18 +18,32 @@ Board::Board()
 
 	// Creates a new Rook for white and put it on a specific square
 	Piece* piece;
-	piece = Materials[0]->AddRook();
+	piece = Materials[0]->AddPiece(new Rook());
 	AddPiece(piece, GetSquare(0, 0));
-	piece = Materials[0]->AddRook();
+	piece = Materials[0]->AddPiece(new Rook());
 	AddPiece(piece, GetSquare(0, 7));
 
-	piece = Materials[0]->AddBishop();
+	piece = Materials[0]->AddPiece(new Knight());
+	AddPiece(piece, GetSquare(0, 1));
+	piece = Materials[0]->AddPiece(new Knight());
+	AddPiece(piece, GetSquare(0, 6));
+
+	piece = Materials[0]->AddPiece(new Bishop());
 	AddPiece(piece, GetSquare(0, 2));
-	piece = Materials[0]->AddBishop();
+	piece = Materials[0]->AddPiece(new Bishop());
 	AddPiece(piece, GetSquare(0, 5));
 
-	piece = Materials[0]->AddQueen();
+	piece = Materials[0]->AddPiece(new Queen());
 	AddPiece(piece, GetSquare(0, 3));
+
+	piece = Materials[0]->AddPiece(new King());
+	AddPiece(piece, GetSquare(0, 4));
+
+	for (int i = 0; i < ColCount; i++)
+	{
+		piece = Materials[0]->AddPiece(new Pawn());
+		AddPiece(piece, GetSquare(1, i));
+	}
 }
 
 

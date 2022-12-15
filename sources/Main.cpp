@@ -53,10 +53,10 @@ void LoopPairs(const std::vector<std::pair<int, int>>& pairs, std::vector<int>& 
 	}
 }
 
+
+
 int main()
 {
-
-
 
 
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "piece.h"
 
+
 class Material
 {
 public:
@@ -14,9 +15,7 @@ public:
 	std::vector<Piece*> GetPieces();
 	Piece* GetRandomPiece();
 
-	Rook* AddRook(); // Add a Rool piece to this Color
-	Bishop* AddBishop(); // Add a Rool piece to this Color
-	Queen* AddQueen(); // Add a Rool piece to this Color
+	Piece* AddPiece(Piece*);
 
 	friend std::ostream& operator<<(std::ostream& os, const Material& material);
 };

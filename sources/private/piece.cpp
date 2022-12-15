@@ -23,7 +23,7 @@ void CheckSquares(const std::vector<std::pair<int, int>>& pairs, Board* board, M
 	}
 }
 
-std::vector<Square*> GetDirectionMoves(std::vector<std::pair<int, int>> directions, Board* board, Square* square, Material* material)
+std::vector<Square*> GetDirectionMoves(std::vector<std::pair<int, int>> directions, Board* board, Square* square, Material* material, bool recursive = true)
 {
 	std::vector<std::pair<int, int>> pairs;
 	std::vector<Square*> squares;
@@ -37,6 +37,9 @@ std::vector<Square*> GetDirectionMoves(std::vector<std::pair<int, int>> directio
 		while ((0 <= Row) && (Row < board->RowCount) && (0 <= Col) && (Col < board->ColCount))
 		{
 			pairs.push_back({ Row, Col });
+			if (!recursive)
+				break;
+
 			Row += dir.first;
 			Col += dir.second;
 		}
@@ -76,7 +79,20 @@ std::vector<Square*> Queen::GetLegalMoves(Board* board, Square* square) const
 	return GetDirectionMoves({ {1,0}, {-1,0}, {0,1}, {0,-1}, {1,1}, {-1,-1}, {1,-1}, {-1,1} }, board, square, PieceMaterial);
 }
 
+std::vector<Square*> King::GetLegalMoves(Board* board, Square* square) const
+{
+	return GetDirectionMoves({ {1,0}, {-1,0}, {0,1}, {0,-1}, {1,1}, {-1,-1}, {1,-1}, {-1,1} }, board, square, PieceMaterial, false);
+}
 
+std::vector<Square*> Knight::GetLegalMoves(Board* board, Square* square) const
+{
+	return GetDirectionMoves({ {2,1}, {2,-1}, {-2,1}, {-2,-1}, {1,2}, {-1,2}, {1,-2}, {-1,-2} }, board, square, PieceMaterial, false);
+}
+
+std::vector<Square*> Pawn::GetLegalMoves(Board* board, Square* square) const
+{
+	return GetDirectionMoves({ {0,1} }, board, square, PieceMaterial, false);
+}
 
 std::ostream& operator<<(std::ostream& os, const Piece& piece)
 {
