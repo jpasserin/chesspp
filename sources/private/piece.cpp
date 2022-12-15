@@ -1,3 +1,6 @@
+#include <cstdlib>
+#include <time.h>
+
 #include "../public/piece.h"
 #include "../public/board.h"
 #include "../public/square.h"
@@ -7,15 +10,17 @@ Square* Piece::GetRandomLegalMove(Board* board, Square* square) const
 {
 	std::vector<Square*> squares = GetLegalMoves(board, square);
 
+	srand(time(0) + rand());
 	int index = rand() % squares.size();
+
 	return squares[index];
 }
 
 std::vector<Square*> Rook::GetLegalMoves(Board* board, Square* square) const
 {
 	std::vector<Square*> legalSquares;
-	Square* returnSquare;
 
+	Square* returnSquare;
 	for (int row = square->Row + 1; row < board->RowCount; row++)
 	{
 		returnSquare = board->GetSquare(row, square->Col);

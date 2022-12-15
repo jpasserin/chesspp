@@ -26,8 +26,13 @@ void PlayGame()
 		randomPiece = white->GetRandomPiece();
 		randomSquare = board.GetSquare(randomPiece);
 		randomSquare = randomPiece->GetRandomLegalMove(&board, randomSquare);
-		std::cout << *randomPiece << " to " << *randomSquare << std::endl;
+		std::cout << "Move " << *randomPiece << " to " << *randomSquare << " - ";
 		board.MovePiece(randomPiece, randomSquare);
+
+		legalSquares = "";
+		for (Square* legalSquare : randomPiece->GetLegalMoves(&board, randomSquare))
+			legalSquares += legalSquare->GetName() + " ";
+		std::cout << legalSquares << std::endl;
 		//Move Piece
 	}
 
