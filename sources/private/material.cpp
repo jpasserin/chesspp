@@ -32,6 +32,32 @@ Rook* Material::AddRook()
 	return rook;
 }
 
+Bishop* Material::AddBishop()
+{
+	//question: Can I write that in one line?
+	// I couldn't find a way to havea constructor taking 'this' as an argument
+	//std::shared_ptr<Rook> rook = std::make_shared<Rook>();
+	Bishop* bishop = new Bishop();
+	bishop->SetMaterial(this);
+
+	Pieces.push_back(bishop);
+
+	return bishop;
+}
+
+Queen* Material::AddQueen()
+{
+	//question: Can I write that in one line?
+	// I couldn't find a way to havea constructor taking 'this' as an argument
+	//std::shared_ptr<Rook> rook = std::make_shared<Rook>();
+	Queen* queen = new Queen();
+	queen->SetMaterial(this);
+
+	Pieces.push_back(queen);
+
+	return queen;
+}
+
 std::ostream& operator<<(std::ostream& os, const Material& material)
 {
 	os << material.GetName();

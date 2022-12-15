@@ -32,19 +32,34 @@ void PlayGame()
 
 		// Move to Random Square
 		randomSquare = randomPiece->GetRandomLegalMove(&board, randomSquare);
-		std::cout << "Move " << *randomPiece << " to " << *randomSquare << std::endl;
-		board.MovePiece(randomPiece, randomSquare);
+		if (randomSquare)
+		{
+			std::cout << "Move " << *randomPiece << " to " << *randomSquare << std::endl;
+			board.MovePiece(randomPiece, randomSquare);
+		}
 
 		board.Draw();
 	}
 
+	std::cout << "Good game!" << std::endl;
 
+}
+
+void LoopPairs(const std::vector<std::pair<int, int>>& pairs, std::vector<int>& out)
+{
+	for (std::pair<int, int > pair : pairs)
+	{
+		out.push_back(pair.first);
+	}
 }
 
 int main()
 {
 
-	
+
+
+
+
 
 	PlayGame();
 	std::cin.get();

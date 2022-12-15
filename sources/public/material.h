@@ -15,6 +15,8 @@ public:
 	Piece* GetRandomPiece();
 
 	Rook* AddRook(); // Add a Rool piece to this Color
+	Bishop* AddBishop(); // Add a Rool piece to this Color
+	Queen* AddQueen(); // Add a Rool piece to this Color
 
 	friend std::ostream& operator<<(std::ostream& os, const Material& material);
 };

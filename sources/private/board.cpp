@@ -17,11 +17,19 @@ Board::Board()
 	Materials[1] = new Material("Black");
 
 	// Creates a new Rook for white and put it on a specific square
-	Piece* rook = Materials[0]->AddRook();
-	AddPiece(rook, GetSquare(2, 1));
+	Piece* piece;
+	piece = Materials[0]->AddRook();
+	AddPiece(piece, GetSquare(0, 0));
+	piece = Materials[0]->AddRook();
+	AddPiece(piece, GetSquare(0, 7));
 
-	Piece* rook2 = Materials[0]->AddRook();
-	AddPiece(rook2, GetSquare(2, 3));
+	piece = Materials[0]->AddBishop();
+	AddPiece(piece, GetSquare(0, 2));
+	piece = Materials[0]->AddBishop();
+	AddPiece(piece, GetSquare(0, 5));
+
+	piece = Materials[0]->AddQueen();
+	AddPiece(piece, GetSquare(0, 3));
 }
 
 

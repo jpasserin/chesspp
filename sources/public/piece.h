@@ -46,3 +46,21 @@ public:
 	std::vector<Square*> virtual GetLegalMoves(Board* board, Square* square) const;
 };
 
+class Bishop : public Piece
+{
+public:
+	char Symbol = 'B';
+
+	char GetSymbol() const override { return Symbol; };
+	std::vector<Square*> virtual GetLegalMoves(Board* board, Square* square) const;
+};
+
+class Queen : public Piece
+{
+public:
+	char Symbol = 'Q';
+
+	char GetSymbol() const override { return Symbol; };
+	std::vector<Square*> virtual GetLegalMoves(Board* board, Square* square) const;
+};
+
