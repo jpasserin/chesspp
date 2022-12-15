@@ -24,9 +24,6 @@
     <ClCompile Include="sources\private\square.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\private\material.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sources\private\piece.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -39,9 +36,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sources\public\piece.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\public\material.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -10,19 +10,15 @@ void PlayGame()
 
 	board.Draw();
 
-	// Get the white pieces
-	Material* white = board.GetMaterial(0);
-
 	Piece* randomPiece;
 	Square* randomSquare;
 	std::string legalSquares;
-
 	for (int i = 0; i < 10; i++)
 	{
 		// Get a random piece and its square
-		randomPiece = white->GetRandomPiece();
+		randomPiece = board.GetRandomPiece(COLOR_WHITE);
 		randomSquare = board.GetSquare(randomPiece);
-		std::cout << *randomPiece << " - " << randomPiece->PieceMaterial->Name << " - " << *randomSquare << std::endl;
+		std::cout << *randomPiece << " - " << randomPiece->Color << " - " << *randomSquare << std::endl;
 
 		// Get Legal Moves
 		legalSquares = "";
@@ -57,7 +53,6 @@ void LoopPairs(const std::vector<std::pair<int, int>>& pairs, std::vector<int>& 
 
 int main()
 {
-
 
 
 

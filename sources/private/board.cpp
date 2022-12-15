@@ -13,44 +13,29 @@ Board::Board()
 		for (int col = 0; col < ColCount; col++)
 			Squares.emplace_back(row, col);
 	
-	Materials[0] = new Material("White");
-	Materials[1] = new Material("Black");
+	Pieces.resize(2, std::vector<Piece*>(0));
 
 	// Creates a new Rook for white and put it on a specific square
-	Piece* piece;
-	piece = Materials[0]->AddPiece(new Rook());
-	AddPiece(piece, GetSquare(0, 0));
-	piece = Materials[0]->AddPiece(new Rook());
-	AddPiece(piece, GetSquare(0, 7));
 
-	piece = Materials[0]->AddPiece(new Knight());
-	AddPiece(piece, GetSquare(0, 1));
-	piece = Materials[0]->AddPiece(new Knight());
-	AddPiece(piece, GetSquare(0, 6));
+	AddPiece(new Rook(COLOR_WHITE), GetSquare(0, 0), COLOR_WHITE);
+	AddPiece(new Rook(COLOR_WHITE), GetSquare(0, 7), COLOR_WHITE);
 
-	piece = Materials[0]->AddPiece(new Bishop());
-	AddPiece(piece, GetSquare(0, 2));
-	piece = Materials[0]->AddPiece(new Bishop());
-	AddPiece(piece, GetSquare(0, 5));
+	AddPiece(new Knight(COLOR_WHITE), GetSquare(0, 1), COLOR_WHITE);
+	AddPiece(new Knight(COLOR_WHITE), GetSquare(0, 6), COLOR_WHITE);
 
-	piece = Materials[0]->AddPiece(new Queen());
-	AddPiece(piece, GetSquare(0, 3));
+	AddPiece(new Bishop(COLOR_WHITE), GetSquare(0, 2), COLOR_WHITE);
+	AddPiece(new Bishop(COLOR_WHITE), GetSquare(0, 5), COLOR_WHITE);
 
-	piece = Materials[0]->AddPiece(new King());
-	AddPiece(piece, GetSquare(0, 4));
+	AddPiece(new Queen(COLOR_WHITE), GetSquare(0, 3), COLOR_WHITE);
+	AddPiece(new King(COLOR_WHITE), GetSquare(0, 4), COLOR_WHITE);
 
 	for (int i = 0; i < ColCount; i++)
 	{
-		piece = Materials[0]->AddPiece(new Pawn());
-		AddPiece(piece, GetSquare(1, i));
+		AddPiece(new Pawn(COLOR_WHITE), GetSquare(1, i), COLOR_WHITE);
 	}
 }
 
 
-Material* Board::GetMaterial(int index) const
-{
-	return Materials[index];
-}
 
 Square* Board::GetSquare(int row, int col) 
 {
@@ -76,11 +61,18 @@ Piece* Board::GetPiece(Square* square)
 	return PieceMap[square];
 }
 
-bool Board::AddPiece(Piece* piece, Square* square)
+Piece* Board::GetRandomPiece(PieceColor color) const
+{
+	int index = rand() % Pieces[color].size();
+	return Pieces[color][index];
+}
+
+bool Board::AddPiece(Piece* piece, Square* square, PieceColor color)
 {
 	if (PieceMap.find(square) != PieceMap.end())
 		return false;
 
+	Pieces[color].push_back(piece);
 	PieceMap[square] = piece;
 }
 

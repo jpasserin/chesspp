@@ -145,13 +145,11 @@
   <ItemGroup>
     <ClCompile Include="sources\Main.cpp" />
     <ClCompile Include="sources\private\board.cpp" />
-    <ClCompile Include="sources\private\material.cpp" />
     <ClCompile Include="sources\private\piece.cpp" />
     <ClCompile Include="sources\private\square.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\public\board.h" />
-    <ClInclude Include="sources\public\material.h" />
     <ClInclude Include="sources\public\piece.h" />
     <ClInclude Include="sources\public\square.h" />
   </ItemGroup>

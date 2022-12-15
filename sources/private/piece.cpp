@@ -5,7 +5,7 @@
 #include "../public/board.h"
 #include "../public/square.h"
 
-void CheckSquares(const std::vector<std::pair<int, int>>& pairs, Board* board, Material* material, std::vector<Square*>& out)
+void CheckSquares(const std::vector<std::pair<int, int>>& pairs, Board* board, PieceColor color, std::vector<Square*>& out)
 {
 	Square* square;
 	Piece* piece;
@@ -15,7 +15,7 @@ void CheckSquares(const std::vector<std::pair<int, int>>& pairs, Board* board, M
 		piece = board->GetPiece(square);
 		if (piece)
 		{
-			if (piece->PieceMaterial != material)
+			if (piece->Color != color)
 				out.push_back(square);
 			break;
 		}
@@ -23,7 +23,7 @@ void CheckSquares(const std::vector<std::pair<int, int>>& pairs, Board* board, M
 	}
 }
 
-std::vector<Square*> GetDirectionMoves(std::vector<std::pair<int, int>> directions, Board* board, Square* square, Material* material, bool recursive = true)
+std::vector<Square*> GetDirectionMoves(std::vector<std::pair<int, int>> directions, Board* board, Square* square, PieceColor color, bool recursive = true)
 {
 	std::vector<std::pair<int, int>> pairs;
 	std::vector<Square*> squares;
@@ -43,7 +43,7 @@ std::vector<Square*> GetDirectionMoves(std::vector<std::pair<int, int>> directio
 			Row += dir.first;
 			Col += dir.second;
 		}
-		CheckSquares(pairs, board, material, squares);
+		CheckSquares(pairs, board, color, squares);
 	}
 
 
@@ -66,33 +66,33 @@ Square* Piece::GetRandomLegalMove(Board* board, Square* square) const
 
 std::vector<Square*> Rook::GetLegalMoves(Board* board, Square* square) const
 {
-	return GetDirectionMoves({ {1,0}, {-1,0}, {0,1}, {0,-1} }, board, square, PieceMaterial);
+	return GetDirectionMoves({ {1,0}, {-1,0}, {0,1}, {0,-1} }, board, square, Color);
 }
 
 std::vector<Square*> Bishop::GetLegalMoves(Board* board, Square* square) const
 {
-	return GetDirectionMoves({ {1,1}, {-1,-1}, {1,-1}, {-1,1} }, board, square, PieceMaterial);
+	return GetDirectionMoves({ {1,1}, {-1,-1}, {1,-1}, {-1,1} }, board, square, Color);
 }
 
 std::vector<Square*> Queen::GetLegalMoves(Board* board, Square* square) const
 {
-	return GetDirectionMoves({ {1,0}, {-1,0}, {0,1}, {0,-1}, {1,1}, {-1,-1}, {1,-1}, {-1,1} }, board, square, PieceMaterial);
+	return GetDirectionMoves({ {1,0}, {-1,0}, {0,1}, {0,-1}, {1,1}, {-1,-1}, {1,-1}, {-1,1} }, board, square, Color);
 }
 
 std::vector<Square*> King::GetLegalMoves(Board* board, Square* square) const
 {
-	return GetDirectionMoves({ {1,0}, {-1,0}, {0,1}, {0,-1}, {1,1}, {-1,-1}, {1,-1}, {-1,1} }, board, square, PieceMaterial, false);
+	return GetDirectionMoves({ {1,0}, {-1,0}, {0,1}, {0,-1}, {1,1}, {-1,-1}, {1,-1}, {-1,1} }, board, square, Color, false);
 }
 
 std::vector<Square*> Knight::GetLegalMoves(Board* board, Square* square) const
 {
-	return GetDirectionMoves({ {2,1}, {2,-1}, {-2,1}, {-2,-1}, {1,2}, {-1,2}, {1,-2}, {-1,-2} }, board, square, PieceMaterial, false);
+	return GetDirectionMoves({ {2,1}, {2,-1}, {-2,1}, {-2,-1}, {1,2}, {-1,2}, {1,-2}, {-1,-2} }, board, square, Color, false);
 }
 
 std::vector<Square*> Pawn::GetLegalMoves(Board* board, Square* square) const
 {
 	std::vector<std::pair<int, int>> directions = { {1,0}, };
-	return GetDirectionMoves(directions, board, square, PieceMaterial, false);
+	return GetDirectionMoves(directions, board, square, Color, false);
 }
 
 std::ostream& operator<<(std::ostream& os, const Piece& piece)
