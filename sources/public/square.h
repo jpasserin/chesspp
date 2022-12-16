@@ -12,8 +12,8 @@ enum SquareColor{
 class Square
 {
 public:
-	int Row; // Row Coordinate of the square
-	int Col; // Col Coordinate of the square
+	const int Row; // Row Coordinate of the square
+	const int Col; // Col Coordinate of the square
 
 public:
 	Square(int row, int col);

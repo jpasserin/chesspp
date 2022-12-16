@@ -13,8 +13,8 @@ enum PieceColor {
 class Piece
 {
 public:
-	PieceColor Color;
-	char Symbol = 'x';
+	const PieceColor Color;
+	const char Symbol = 'x';
 
 	Piece(PieceColor color) : Color(color)
 	{
@@ -35,7 +35,7 @@ public:
 class Rook : public Piece
 {
 public:
-	char Symbol = 'R';
+	const char Symbol = 'R';
 
 	Rook(PieceColor color) : Piece(color) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'R' : 'r'; };
@@ -45,7 +45,7 @@ public:
 class Bishop : public Piece
 {
 public:
-	char Symbol = 'B';
+	const char Symbol = 'B';
 
 	Bishop(PieceColor color) : Piece(color) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'B' : 'b'; };
@@ -55,7 +55,7 @@ public:
 class Queen : public Piece
 {
 public:
-	char Symbol = 'Q';
+	const char Symbol = 'Q';
 
 	Queen(PieceColor color) : Piece(color) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'Q' : 'q'; };
@@ -65,7 +65,7 @@ public:
 class King : public Piece
 {
 public:
-	char Symbol = 'K';
+	const char Symbol = 'K';
 
 	King(PieceColor color) : Piece(color) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'K' : 'k'; };
@@ -75,7 +75,7 @@ public:
 class Knight : public Piece
 {
 public:
-	char Symbol = 'N';
+	const char Symbol = 'N';
 
 	Knight(PieceColor color) : Piece(color) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'N' : 'n'; };
@@ -85,7 +85,7 @@ public:
 class Pawn : public Piece
 {
 public:
-	char Symbol = 'P';
+	const char Symbol = 'P';
 
 	Pawn(PieceColor color) : Piece(color) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'P' : 'p'; };

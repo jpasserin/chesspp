@@ -8,13 +8,12 @@
 class Board
 {
 public:
-	int RowCount; // Number of Rows
-	int ColCount; // Number of Columns
+	const int RowCount; // Number of Rows
+	const int ColCount; // Number of Columns
 private:
-	std::unordered_map<Square*, Piece*> PieceMap;
-public:
-	std::vector<std::vector<Piece*>> Pieces;
 	std::vector<Square*> Squares; // Squares on the board, size = RowCount * ColCount
+	std::vector<std::vector<Piece*>> Pieces;
+	std::unordered_map<Square*, Piece*> PieceMap;
 
 public:
 	Board();	
