@@ -3,50 +3,96 @@
 
 void PlayGame()
 {
-	std::cout << "Let's start a game of chess!" << std::endl;
+	Board* board = new Board();
 
-	// Creates a standard board game
-	Board board = Board();
+	board->Draw();
 
-	board.Draw();
-
-	Piece* randomPiece;
-	Square* randomSquare;
+	Piece* piece;
+	SquareCoordinate square;
 	std::string legalSquares;
 	for (int i = 0; i < 10; i++)
 	{
 		for (PieceColor color : {COLOR_WHITE, COLOR_BLACK})
 		{
 			// Get a random piece and its square
-			randomPiece = board.GetRandomPiece(color);
-			randomSquare = board.GetSquare(randomPiece);
-			std::cout << *randomPiece << " - " << randomPiece->Color << " - " << *randomSquare << std::endl;
+			piece = board->GetRandomPiece(color);
 
 			// Get Legal Moves
 			legalSquares = "";
-			for (Square* legalSquare : randomPiece->GetLegalMoves(&board, randomSquare))
-				legalSquares += legalSquare->GetName() + " ";
-			std::cout << legalSquares << std::endl;
+			for (SquareCoordinate legalSquare : piece->GetLegalMoves())
+				legalSquares += legalSquare.GetName() + " ";
 
 			// Move to Random Square
-			randomSquare = randomPiece->GetRandomLegalMove(&board, randomSquare);
-			if (randomSquare)
+			square = piece->GetRandomLegalMove();
+			if (square.Valid)
 			{
-				std::cout << "Move " << *randomPiece << " to " << *randomSquare << std::endl;
-				board.MovePiece(randomPiece, randomSquare);
+				std::cout << "Move " << piece->Color << *piece << piece->Square.GetName() << " to " << square.GetName() << " (" << legalSquares << ")" << std::endl;
+				board->MovePiece(piece, square);
 			}
-			board.Draw();
+			board->Draw();
 		}
 
 	}
 
+	delete board;
 	std::cout << "Good game!" << std::endl;
 
 }
 
+class Parent;
+
+
+class Child
+{
+	const Parent* parent;
+	const int age;
+
+public:
+	Child(Parent* p, int a) : parent(p), age(a)
+	{
+		std::cout << "Create Child" << std::endl;
+	}
+};
+
+class Son : public Child
+{
+public:
+	Son(Parent* p, int a) : Child(p, a) {}
+}; 
+
+class Daughter : public Child
+{
+public:
+	Daughter(Parent* p, int a) : Child(p, a) {}
+};
+
+class Parent
+{
+	std::vector<Child*> children;
+
+public:
+	Parent()
+	{
+		children = std::vector<Child*>(2, nullptr);
+
+		Child* son = new Son(this, 12);
+		children[0] = son;
+		Child* daughter = new Daughter(this, 8);
+		children[1] = daughter;
+
+		std::cout << "Create Parent" << std::endl;
+	}
+	~Parent()
+	{
+		std::cout << "Destroy Parent" << std::endl;
+	}
+};
+
 
 int main()
 {
+	//Parent dad = Parent();
+
 	PlayGame();
 	std::cin.get();
 }

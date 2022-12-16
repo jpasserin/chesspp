@@ -8,109 +8,108 @@ Board::Board()
 	// 8 x 8 board, two colors, 32 standard pieces
 	std::cout << "New Standard Game" << std::endl;
 
-	Squares.reserve(RowCount * ColCount);
-	for (int row = 0; row < RowCount; row++)
-		for (int col = 0; col < ColCount; col++)
-			Squares.push_back(new Square(row, col));
-	
-	Pieces.resize(2, std::vector<Piece*>(0));
+	Pieces = std::vector<Piece*>(RowCount * ColCount, nullptr);
 
 	// Whites
-	AddPiece(new Rook(COLOR_WHITE), GetSquare(0, 0), COLOR_WHITE);
-	AddPiece(new Rook(COLOR_WHITE), GetSquare(0, 7), COLOR_WHITE);
+	AddPiece(new Rook(this, COLOR_WHITE, 0, 0));
+	AddPiece(new Rook(this, COLOR_WHITE, 0, 7));
 
-	AddPiece(new Knight(COLOR_WHITE), GetSquare(0, 1), COLOR_WHITE);
-	AddPiece(new Knight(COLOR_WHITE), GetSquare(0, 6), COLOR_WHITE);
+	AddPiece(new Knight(this, COLOR_WHITE, 0, 1));
+	AddPiece(new Knight(this, COLOR_WHITE, 0, 6));
 
-	AddPiece(new Bishop(COLOR_WHITE), GetSquare(0, 2), COLOR_WHITE);
-	AddPiece(new Bishop(COLOR_WHITE), GetSquare(0, 5), COLOR_WHITE);
+	AddPiece(new Bishop(this, COLOR_WHITE, 0, 2));
+	AddPiece(new Bishop(this, COLOR_WHITE, 0, 5));
 
-	AddPiece(new Queen(COLOR_WHITE), GetSquare(0, 3), COLOR_WHITE);
-	AddPiece(new King(COLOR_WHITE), GetSquare(0, 4), COLOR_WHITE);
+	AddPiece(new Queen(this, COLOR_WHITE, 0, 3));
+	AddPiece(new King(this, COLOR_WHITE, 0, 4));
 
 	for (int i = 0; i < ColCount; i++)
-		AddPiece(new Pawn(COLOR_WHITE), GetSquare(1, i), COLOR_WHITE);
-
+		AddPiece(new Pawn(this, COLOR_WHITE, 1, i));
 
 	// Blacks
-	AddPiece(new Rook(COLOR_BLACK), GetSquare(7, 0), COLOR_BLACK);
-	AddPiece(new Rook(COLOR_BLACK), GetSquare(7, 7), COLOR_BLACK);
+	AddPiece(new Rook(this, COLOR_BLACK, 7, 0));
+	AddPiece(new Rook(this, COLOR_BLACK, 7, 7));
 
-	AddPiece(new Knight(COLOR_BLACK), GetSquare(7, 1), COLOR_BLACK);
-	AddPiece(new Knight(COLOR_BLACK), GetSquare(7, 6), COLOR_BLACK);
+	AddPiece(new Knight(this, COLOR_BLACK, 7, 1));
+	AddPiece(new Knight(this, COLOR_BLACK, 7, 6));
 
-	AddPiece(new Bishop(COLOR_BLACK), GetSquare(7, 2), COLOR_BLACK);
-	AddPiece(new Bishop(COLOR_BLACK), GetSquare(7, 5), COLOR_BLACK);
+	AddPiece(new Bishop(this, COLOR_BLACK, 7, 2));
+	AddPiece(new Bishop(this, COLOR_BLACK, 7, 5));
 
-	AddPiece(new Queen(COLOR_BLACK), GetSquare(7, 3), COLOR_BLACK);
-	AddPiece(new King(COLOR_BLACK), GetSquare(7, 4), COLOR_BLACK);
+	AddPiece(new Queen(this, COLOR_BLACK, 7, 3));
+	AddPiece(new King(this, COLOR_BLACK, 7, 4));
 
 	for (int i = 0; i < ColCount; i++)
-		AddPiece(new Pawn(COLOR_BLACK), GetSquare(6, i), COLOR_BLACK);
+		AddPiece(new Pawn(this, COLOR_BLACK, 6, i));
 }
 
-Square* Board::GetSquare(int row, int col) const
+
+Piece* Board::GetPiece(int row, int col) const
 {
-	return Squares[row * ColCount + col];
+	return Pieces[row * ColCount + col];
 }
 
-Square* Board::GetSquare(Piece* piece) const
+Piece* Board::GetPiece(SquareCoordinate square) const
 {
-	for (auto m : PieceMap)
-		if (piece == m.second)
-			return m.first;
-
-	return nullptr;
+	return GetPiece(square.Row, square.Col);
 }
 
-Piece* Board::GetPiece(Square* square) 
+Piece* Board::GetRandomPiece(PieceColor color) const
 {
-	if (PieceMap.find(square) == PieceMap.end())
+	std::vector<Piece*> colorPieces;
+	for (Piece* piece : Pieces)
+	{
+		if (piece && piece->Color == color)
+		{
+			colorPieces.push_back(piece);
+		}
+	}
+	
+	if (!colorPieces.size())
 		return nullptr;
 
-	return PieceMap[square];
-}
-
-Piece* Board::GetRandomPiece(PieceColor color)
-{
 	Piece* piece;
 	while (true)
 	{
 		srand(time(0) + rand());
-		int index = rand() % Pieces[color].size();
-		piece = Pieces[color][index];
-		if (piece->GetLegalMoves(this, GetSquare(piece)).size())
+		int index = rand() % colorPieces.size();
+		piece = colorPieces[index];
+		if (piece->GetLegalMoves().size())
 			return piece;
 	}
 	return nullptr;
 }
 
-bool Board::AddPiece(Piece* piece, Square* square, PieceColor color)
+bool Board::AddPiece(Piece* piece)
 {
-	if (PieceMap.find(square) != PieceMap.end())
-		return false;
-
-	Pieces[color].push_back(piece);
-	PieceMap[square] = piece;
-}
-
-bool Board::MovePiece(Piece* piece, Square* square)
-{
-	Pieces;
-	PieceMap;
-
-	Square* oldSquare = GetSquare(piece);
-	PieceMap.erase(oldSquare);
-	Piece* oldPiece = PieceMap[square];
-	if (oldPiece)
+	if (GetPiece(piece->Square.Row, piece->Square.Col))
 	{
-		delete PieceMap[square];
-		for (std::vector<Piece*>& Color : Pieces) 
-			Color.erase(std::remove(Color.begin(), Color.end(), oldPiece), Color.end());
+		delete piece;
+		return false;
 	}
 
-	PieceMap[square] = piece;
+	Pieces[piece->Square.Row * ColCount + piece->Square.Col] = piece;
+
 	return true;
+}
+
+
+bool Board::MovePiece(Piece* piece, int row, int col)
+{
+	Piece* oldPiece = GetPiece(row, col);
+	if (oldPiece)
+		delete oldPiece;
+
+	Pieces[piece->Square.Row * ColCount + piece->Square.Col] = nullptr;
+	Pieces[row * ColCount + col] = piece;
+	piece->Square = SquareCoordinate(row, col);
+
+	return true;
+}
+
+bool Board::MovePiece(Piece* piece, SquareCoordinate square)
+{
+	return MovePiece(piece, square.Row, square.Col);
 }
 
 void Board::Draw()
@@ -120,8 +119,7 @@ void Board::Draw()
 	{
 		for (int col = 0; col < ColCount; col++)
 		{
-			Square* square = GetSquare(row, col);
-			Piece* piece = GetPiece(square);
+			Piece* piece = GetPiece(row, col);
 			if (piece)
 				s = piece->GetSymbol();
 			else
