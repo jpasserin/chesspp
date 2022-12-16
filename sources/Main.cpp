@@ -31,68 +31,14 @@ void PlayGame()
 			}
 			board->Draw();
 		}
-
 	}
 
 	delete board;
 	std::cout << "Good game!" << std::endl;
-
 }
-
-class Parent;
-
-
-class Child
-{
-	const Parent* parent;
-	const int age;
-
-public:
-	Child(Parent* p, int a) : parent(p), age(a)
-	{
-		std::cout << "Create Child" << std::endl;
-	}
-};
-
-class Son : public Child
-{
-public:
-	Son(Parent* p, int a) : Child(p, a) {}
-}; 
-
-class Daughter : public Child
-{
-public:
-	Daughter(Parent* p, int a) : Child(p, a) {}
-};
-
-class Parent
-{
-	std::vector<Child*> children;
-
-public:
-	Parent()
-	{
-		children = std::vector<Child*>(2, nullptr);
-
-		Child* son = new Son(this, 12);
-		children[0] = son;
-		Child* daughter = new Daughter(this, 8);
-		children[1] = daughter;
-
-		std::cout << "Create Parent" << std::endl;
-	}
-	~Parent()
-	{
-		std::cout << "Destroy Parent" << std::endl;
-	}
-};
-
 
 int main()
 {
-	//Parent dad = Parent();
-
 	PlayGame();
 	std::cin.get();
 }
