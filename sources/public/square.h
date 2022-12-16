@@ -19,7 +19,7 @@ public:
 	Square(int row, int col);
 	SquareColor Color() const; // Returns the color of the square
 
-	std::string  GetName() const;
+	std::string GetName() const;
 
 	friend std::ostream& operator<<(std::ostream& os, const Square& square);
 };

@@ -91,7 +91,11 @@ std::vector<Square*> Knight::GetLegalMoves(Board* board, Square* square) const
 
 std::vector<Square*> Pawn::GetLegalMoves(Board* board, Square* square) const
 {
-	std::vector<std::pair<int, int>> directions = { {1,0}, };
+	std::vector<std::pair<int, int>> directions;
+	if (Color == COLOR_WHITE)
+		directions = { {1,0}, };
+	else
+		directions = { {-1,0}, };
 	return GetDirectionMoves(directions, board, square, Color, false);
 }
 

@@ -14,16 +14,16 @@ private:
 	std::unordered_map<Square*, Piece*> PieceMap;
 public:
 	std::vector<std::vector<Piece*>> Pieces;
-	std::vector<Square> Squares; // Squares on the board, size = RowCount * ColCount
+	std::vector<Square*> Squares; // Squares on the board, size = RowCount * ColCount
 
 public:
 	Board();	
 
-	Square* GetSquare(int row, int col); // Returns a specific Square ofd the board
-	Square* GetSquare(Piece* piece); // Returns a specific Square ofd the board
+	Square* GetSquare(int row, int col) const; // Returns a specific Square ofd the board
+	Square* GetSquare(Piece* piece) const; // Returns a specific Square ofd the board
 	Piece* GetPiece(Square* square); // Returns a specific Square ofd the board
 
-	Piece* GetRandomPiece(PieceColor color) const;
+	Piece* GetRandomPiece(PieceColor color);
 
 	bool AddPiece(Piece* piece, Square* square, PieceColor color);
 	bool MovePiece(Piece* piece, Square* square);

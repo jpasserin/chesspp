@@ -4,7 +4,6 @@
 
 class Square;
 class Board;
-class Material;
 
 enum PieceColor {
 	COLOR_WHITE,
@@ -12,10 +11,7 @@ enum PieceColor {
 };
 
 class Piece
-/* Abstract Piece class
-*/
 {
-
 public:
 	PieceColor Color;
 	char Symbol = 'x';
@@ -42,7 +38,7 @@ public:
 	char Symbol = 'R';
 
 	Rook(PieceColor color) : Piece(color) {}
-	char GetSymbol() const override { return Symbol; };
+	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'R' : 'r'; };
 	std::vector<Square*> virtual GetLegalMoves(Board* board, Square* square) const;
 };
 
@@ -52,7 +48,7 @@ public:
 	char Symbol = 'B';
 
 	Bishop(PieceColor color) : Piece(color) {}
-	char GetSymbol() const override { return Symbol; };
+	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'B' : 'b'; };
 	std::vector<Square*> virtual GetLegalMoves(Board* board, Square* square) const;
 };
 
@@ -62,7 +58,7 @@ public:
 	char Symbol = 'Q';
 
 	Queen(PieceColor color) : Piece(color) {}
-	char GetSymbol() const override { return Symbol; };
+	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'Q' : 'q'; };
 	std::vector<Square*> virtual GetLegalMoves(Board* board, Square* square) const;
 };
 
@@ -72,7 +68,7 @@ public:
 	char Symbol = 'K';
 
 	King(PieceColor color) : Piece(color) {}
-	char GetSymbol() const override { return Symbol; };
+	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'K' : 'k'; };
 	std::vector<Square*> virtual GetLegalMoves(Board* board, Square* square) const;
 };
 
@@ -82,9 +78,9 @@ public:
 	char Symbol = 'N';
 
 	Knight(PieceColor color) : Piece(color) {}
-	char GetSymbol() const override { return Symbol; };
+	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'N' : 'n'; };
 	std::vector<Square*> virtual GetLegalMoves(Board* board, Square* square) const;
-}; 
+};
 
 class Pawn : public Piece
 {
@@ -92,6 +88,6 @@ public:
 	char Symbol = 'P';
 
 	Pawn(PieceColor color) : Piece(color) {}
-	char GetSymbol() const override { return Symbol; };
+	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'P' : 'p'; };
 	std::vector<Square*> virtual GetLegalMoves(Board* board, Square* square) const;
 };
