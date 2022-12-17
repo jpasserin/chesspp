@@ -4,3 +4,8 @@
 
 /.vs/Chesspp
 /bin
+/chesspp/bin
+/x64/Debug
+/chessppUI/x64/Debug/ChessppUI.tlog
+/chessppUI/x64/Debug/qmake
+/chessppUI/x64/Debug

@@ -15,21 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sources\Main.cpp">
+    <ClCompile Include="chesspp\sources\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\private\board.cpp">
+    <ClCompile Include="chesspp\sources\private\board.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\private\piece.cpp">
+    <ClCompile Include="chesspp\sources\private\piece.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sources\public\board.h">
+    <ClInclude Include="chesspp\sources\public\board.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\public\piece.h">
+    <ClInclude Include="chesspp\sources\public\piece.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

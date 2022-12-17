@@ -143,13 +143,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="sources\Main.cpp" />
-    <ClCompile Include="sources\private\board.cpp" />
-    <ClCompile Include="sources\private\piece.cpp" />
+    <ClCompile Include="chesspp\sources\Main.cpp" />
+    <ClCompile Include="chesspp\sources\private\board.cpp" />
+    <ClCompile Include="chesspp\sources\private\piece.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sources\public\board.h" />
-    <ClInclude Include="sources\public\piece.h" />
+    <ClInclude Include="chesspp\sources\public\board.h" />
+    <ClInclude Include="chesspp\sources\public\piece.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
