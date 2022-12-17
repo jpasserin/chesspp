@@ -1,5 +1,5 @@
 #include <iostream>
-#include "public/board.h"
+#include "board.h"
 
 void PlayGame()
 {
