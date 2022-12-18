@@ -4,6 +4,7 @@
 #include <string>
 
 class Board;
+class Duck;
 
 
 enum PieceColor {
