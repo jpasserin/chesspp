@@ -7,4 +7,7 @@
 /chesslib/int
 /chessui/bin
 /chesslib/bin
-/chesslib/bin
+/chesscmd/bin
+/chessui/int
+/chessui/Debug/qmake
+/chesslib/lib/Debug

@@ -56,8 +56,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'">
-    <OutDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)\bin\Intermediates\$(Configuration)\$(Platform)</IntDir>
+    <OutDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)</OutDir>
+    <IntDir>$(SolutionDir)$(ProjectName)\int\$(Configuration)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'">
     <OutDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)</OutDir>
@@ -68,8 +68,8 @@
       <AdditionalIncludeDirectories>$(SolutionDir)chesslib\public;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)chesslib\bin\Debug\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies);$(Qt_LIBS_);LibProject.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)chesslib\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies);$(Qt_LIBS_);chesslib.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'" Label="Configuration">

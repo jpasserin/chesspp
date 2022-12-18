@@ -72,8 +72,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)\bin\Intermediates\$(Configuration)\$(Platform)</IntDir>
+    <OutDir>$(SolutionDir)$(ProjectName)\lib\$(Configuration)</OutDir>
+    <IntDir>$(SolutionDir)$(ProjectName)\int\$(Configuration)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)</OutDir>

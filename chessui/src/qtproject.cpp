@@ -1,4 +1,5 @@
 #include "qtproject.h"
+#include <string>
 
 QtProject::QtProject(QWidget *parent)
     : QMainWindow(parent)
@@ -24,6 +25,7 @@ void QtProject::SetBoard(Board* in_board)
 	QGridLayout* layout = (QGridLayout*)ui.MyWidget->layout();
 
 	QPushButton* button;
+	Piece* piece;
 	for (int row = board->RowCount - 1; row >= 0; row--)
 	{
 		for (int col = 0; col < board->ColCount; col++)
@@ -32,6 +34,14 @@ void QtProject::SetBoard(Board* in_board)
 			button->setFixedSize(50, 50);
 			if((row * board->ColCount + col)%2 == 0)
 				button->setBackgroundRole(QPalette::Dark);
+
+			piece = board->GetPiece(row, col);
+			if (piece)
+			{
+				std::string s(1, piece->GetSymbol());
+				button->setText(QString::fromStdString(s));
+			}
+
 			layout->addWidget(button, row, col);
 		}
 	}

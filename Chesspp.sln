@@ -11,34 +11,20 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chesscmd", "chesscmd\chessc
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
-		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4C96657F-DA95-4F36-9977-7FEA8330A4CB}.Debug|x64.ActiveCfg = Debug|Win32
-		{4C96657F-DA95-4F36-9977-7FEA8330A4CB}.Debug|x64.Build.0 = Debug|Win32
 		{4C96657F-DA95-4F36-9977-7FEA8330A4CB}.Debug|x86.ActiveCfg = Debug|Win32
 		{4C96657F-DA95-4F36-9977-7FEA8330A4CB}.Debug|x86.Build.0 = Debug|Win32
-		{4C96657F-DA95-4F36-9977-7FEA8330A4CB}.Release|x64.ActiveCfg = Release|Win32
-		{4C96657F-DA95-4F36-9977-7FEA8330A4CB}.Release|x64.Build.0 = Release|Win32
 		{4C96657F-DA95-4F36-9977-7FEA8330A4CB}.Release|x86.ActiveCfg = Release|Win32
 		{4C96657F-DA95-4F36-9977-7FEA8330A4CB}.Release|x86.Build.0 = Release|Win32
-		{B3ACDD7F-A6CB-485C-BD73-51CB65257ABB}.Debug|x64.ActiveCfg = Debug|x64
-		{B3ACDD7F-A6CB-485C-BD73-51CB65257ABB}.Debug|x64.Build.0 = Debug|x64
 		{B3ACDD7F-A6CB-485C-BD73-51CB65257ABB}.Debug|x86.ActiveCfg = Debug|Win32
 		{B3ACDD7F-A6CB-485C-BD73-51CB65257ABB}.Debug|x86.Build.0 = Debug|Win32
-		{B3ACDD7F-A6CB-485C-BD73-51CB65257ABB}.Release|x64.ActiveCfg = Release|x64
-		{B3ACDD7F-A6CB-485C-BD73-51CB65257ABB}.Release|x64.Build.0 = Release|x64
 		{B3ACDD7F-A6CB-485C-BD73-51CB65257ABB}.Release|x86.ActiveCfg = Release|Win32
 		{B3ACDD7F-A6CB-485C-BD73-51CB65257ABB}.Release|x86.Build.0 = Release|Win32
-		{8065D8BD-C51A-4E43-83C6-32D71C26779F}.Debug|x64.ActiveCfg = Debug|x64
-		{8065D8BD-C51A-4E43-83C6-32D71C26779F}.Debug|x64.Build.0 = Debug|x64
 		{8065D8BD-C51A-4E43-83C6-32D71C26779F}.Debug|x86.ActiveCfg = Debug|Win32
 		{8065D8BD-C51A-4E43-83C6-32D71C26779F}.Debug|x86.Build.0 = Debug|Win32
-		{8065D8BD-C51A-4E43-83C6-32D71C26779F}.Release|x64.ActiveCfg = Release|x64
-		{8065D8BD-C51A-4E43-83C6-32D71C26779F}.Release|x64.Build.0 = Release|x64
 		{8065D8BD-C51A-4E43-83C6-32D71C26779F}.Release|x86.ActiveCfg = Release|Win32
 		{8065D8BD-C51A-4E43-83C6-32D71C26779F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
