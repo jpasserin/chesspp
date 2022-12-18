@@ -5,3 +5,6 @@
 /.vs/Chesspp
 /chesscmd/int
 /chesslib/int
+/chessui/bin
+/chesslib/bin
+/chesslib/bin
