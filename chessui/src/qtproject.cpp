@@ -1,5 +1,6 @@
 #include "qtproject.h"
 #include <string>
+#include <qdebug.h>
 
 MainWindow::MainWindow(Board* board, QWidget *parent)
     : QMainWindow(parent)
@@ -29,30 +30,55 @@ BoardWidget::BoardWidget(Board* board, QWidget* parent) : mBoard(board), QWidget
 		for (int col = 0; col < board->ColCount; col++)
 		{
 			button = new SquareButton(board, row, col);
+			//QPushButton* button = new QPushButton("button");
+
+			//button->setFixedSize(45, 45);
 			layout->addWidget(button, board->RowCount - row, col);
-			//button->connect(button, SIGNAL(clicked()), this, SLOT(ButtonClicked()));
+			button->connect(button, &QPushButton::clicked, this, &BoardWidget::ButtonClicked);
 
 			Buttons[row * board->ColCount + col] = button;
+			//connect(button, SIGNAL(clicked()), SLOT(Print()));
+
+			;
 		}
 	}
 }
 
+
 void BoardWidget::ButtonClicked()
 {
 	QPushButton* buttonSender = qobject_cast<QPushButton*>(sender()); // retrieve the button you have clicked
-	
-
-	for (QPushButton* btn : Buttons)
+	SquareButton* button = (SquareButton*)buttonSender;
+	for (SquareCoordinate square : button->GetLegalSquares())
 	{
-		btn->setChecked(buttonSender == btn);
+
+		qDebug() << square.Row << square.Col;
+		SquareButton* other = Buttons[square.Row * mBoard->ColCount + square.Col];
+
+		other->setProperty("legal", true);
+		other->repaint();
+		qDebug() << square.Row << square.Col;
 	}
+}
+
+
+std::vector<SquareCoordinate> SquareButton::GetLegalSquares()
+{
+	std::vector<SquareCoordinate> squares;
+
+	for (SquareCoordinate square : mPiece->GetLegalMoves())
+	{
+		squares.push_back(square);
+	}
+	return squares;
 }
 
 SquareButton::SquareButton(Board* board, int row, int col, QWidget* parent) : mBoard(board), Row(row), Col(col), QPushButton(parent)
 {
 	setFixedSize(45, 45);
-	setProperty("dark", (Row + Col) % 2 == 0);
 	setAutoExclusive(true);
+	setProperty("dark", (Row + Col) % 2 == 0);
+	setProperty("legal", false);
 
 	mPiece = board->GetPiece(row, col);
 	if (mPiece)
@@ -81,10 +107,3 @@ void SquareButton::RemovePiece()
 	mPiece = nullptr;
 	setCheckable(false);
 }
-
-void SquareButton::clicked(bool checked)
-{
-	QPushButton::clicked(checked);
-
-}
-

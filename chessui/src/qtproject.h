@@ -20,7 +20,7 @@ public:
     SquareButton(Board* mBoard, int row, int col, QWidget* parent = nullptr);
     void SetPiece(Piece* piece);
     void RemovePiece();
-    void clicked(bool checked = false);
+    std::vector<SquareCoordinate> GetLegalSquares();
 };
 
 class BoardWidget : public QWidget
