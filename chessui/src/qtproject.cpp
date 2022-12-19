@@ -1,48 +1,90 @@
 #include "qtproject.h"
 #include <string>
 
-QtProject::QtProject(QWidget *parent)
+MainWindow::MainWindow(Board* board, QWidget *parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
 
+	mBoardWDG = new BoardWidget(board);
+	QHBoxLayout* layout = (QHBoxLayout*)ui.MainWDG->layout();
+	layout->insertWidget(0, mBoardWDG, Qt::AlignLeft);
+
 }
 
-QtProject::~QtProject()
-{}
 
-
-void QtProject::SetLabelText(const char* text)
+BoardWidget::BoardWidget(Board* board, QWidget* parent) : mBoard(board), QWidget(parent)
 {
-    ui.MyLabel->setText(text);
-}
+	QGridLayout* layout = new QGridLayout();
+	layout->setContentsMargins(0, 0, 0, 0);
+	layout->setVerticalSpacing(0);
+	layout->setHorizontalSpacing(0);
+	setLayout(layout);
 
+	Buttons = std::vector<SquareButton*>(board->RowCount * board->ColCount, nullptr);
 
-void QtProject::SetBoard(Board* in_board)
-{ 
-    board = in_board; 
-
-	QGridLayout* layout = (QGridLayout*)ui.MyWidget->layout();
-
-	QPushButton* button;
-	Piece* piece;
+	SquareButton* button;
 	for (int row = board->RowCount - 1; row >= 0; row--)
 	{
 		for (int col = 0; col < board->ColCount; col++)
 		{
-			button = new QPushButton();
-			button->setFixedSize(50, 50);
-			if((row * board->ColCount + col)%2 == 0)
-				button->setBackgroundRole(QPalette::Dark);
+			button = new SquareButton(board, row, col);
+			layout->addWidget(button, board->RowCount - row, col);
+			//button->connect(button, SIGNAL(clicked()), this, SLOT(ButtonClicked()));
 
-			piece = board->GetPiece(row, col);
-			if (piece)
-			{
-				std::string s(1, piece->GetSymbol());
-				button->setText(QString::fromStdString(s));
-			}
-
-			layout->addWidget(button, row, col);
+			Buttons[row * board->ColCount + col] = button;
 		}
 	}
 }
+
+void BoardWidget::ButtonClicked()
+{
+	QPushButton* buttonSender = qobject_cast<QPushButton*>(sender()); // retrieve the button you have clicked
+	
+
+	for (QPushButton* btn : Buttons)
+	{
+		btn->setChecked(buttonSender == btn);
+	}
+}
+
+SquareButton::SquareButton(Board* board, int row, int col, QWidget* parent) : mBoard(board), Row(row), Col(col), QPushButton(parent)
+{
+	setFixedSize(45, 45);
+	setProperty("dark", (Row + Col) % 2 == 0);
+	setAutoExclusive(true);
+
+	mPiece = board->GetPiece(row, col);
+	if (mPiece)
+		SetPiece(mPiece);
+
+	//button->setText(QString::fromStdString(std::to_string(row * board->ColCount + col)));
+	//button->setText(QString::fromStdString(std::to_string(row  + col)));
+}
+
+void SquareButton::SetPiece(Piece* piece)
+{
+	mPiece = piece;
+	setCheckable(true);
+
+	std::string path = "D:/Jeremie/Code/References/chesspp/chessui/src/img/";
+	std::string name =  path + piece->GetName() + "_" + std::to_string(mPiece->Color) + ".png";
+
+	QPixmap pixmap(QString::fromStdString(name));
+	QIcon ButtonIcon(pixmap);
+	setIcon(ButtonIcon);
+	setIconSize(pixmap.rect().size());
+}
+
+void SquareButton::RemovePiece()
+{
+	mPiece = nullptr;
+	setCheckable(false);
+}
+
+void SquareButton::clicked(bool checked)
+{
+	QPushButton::clicked(checked);
+
+}
+

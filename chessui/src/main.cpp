@@ -9,10 +9,7 @@ int main(int argc, char *argv[])
     Board* board = new Board();
 
     QApplication a(argc, argv);
-    QtProject w;
-    w.SetLabelText("YEs");
-    w.SetLabelText("YEs");
-    w.SetBoard(board);
-    w.show();
+    MainWindow* widget = new MainWindow(board);
+    widget->show();
     return a.exec();
 }

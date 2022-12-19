@@ -53,7 +53,8 @@ protected:
 public:
 	std::vector<SquareCoordinate> virtual GetLegalMoves() const = 0; // Returns the legal squares to move the piece to
 	SquareCoordinate GetRandomLegalMove() const;
-	virtual char GetSymbol() const { return Symbol; };
+	virtual char GetSymbol() const { return Symbol; }
+	virtual const char* GetName() const { return "Piece"; }
 	friend std::ostream& operator<<(std::ostream& os, const Piece& piece);
 };
 
@@ -65,6 +66,7 @@ public:
 
 	Rook(Board* board, PieceColor color, int row, int col) : Piece(board, color, row, col) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'R' : 'r'; };
+	virtual const char* GetName() const { return "Rook"; }
 	std::vector<SquareCoordinate> virtual GetLegalMoves() const;
 };
 
@@ -75,6 +77,7 @@ public:
 
 	Bishop(Board* board, PieceColor color, int row, int col) : Piece(board, color, row, col) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'B' : 'b'; };
+	virtual const char* GetName() const { return "Bishop"; }
 	std::vector<SquareCoordinate> virtual GetLegalMoves() const;
 };
 
@@ -85,6 +88,7 @@ public:
 
 	Queen(Board* board, PieceColor color, int row, int col) : Piece(board, color, row, col) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'Q' : 'q'; };
+	virtual const char* GetName() const { return "Queen"; }
 	std::vector<SquareCoordinate> virtual GetLegalMoves() const;
 };
 
@@ -95,6 +99,7 @@ public:
 
 	King(Board* board, PieceColor color, int row, int col) : Piece(board, color, row, col) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'K' : 'k'; };
+	virtual const char* GetName() const { return "King"; }
 	std::vector<SquareCoordinate> virtual GetLegalMoves() const;
 };
 
@@ -105,6 +110,7 @@ public:
 
 	Knight(Board* board, PieceColor color, int row, int col) : Piece(board, color, row, col) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'N' : 'n'; };
+	virtual const char* GetName() const { return "Knight"; }
 	std::vector<SquareCoordinate> virtual GetLegalMoves() const;
 };
 
@@ -115,5 +121,6 @@ public:
 
 	Pawn(Board* board, PieceColor color, int row, int col) : Piece(board, color, row, col) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'P' : 'p'; };
+	virtual const char* GetName() const { return "Pawn"; }
 	std::vector<SquareCoordinate> virtual GetLegalMoves() const;
 };

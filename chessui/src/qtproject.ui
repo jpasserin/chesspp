@@ -1,56 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtProjectClass</class>
- <widget class="QMainWindow" name="QtProjectClass">
+ <class>MainWindowClass</class>
+ <widget class="QMainWindow" name="MainWindowClass">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>746</width>
-    <height>496</height>
+    <width>575</width>
+    <height>289</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>QtProject</string>
+   <string>Chess++</string>
   </property>
-  <widget class="QWidget" name="centralWidget">
+  <property name="styleSheet">
+   <string notr="true">QPushButton{
+	background-color: rgb(200, 200, 200);
+	border-radius:8px;
+}
+QPushButton[dark=true]{
+	background-color: rgb(100, 100, 100);
+}
+QPushButton:checked{
+	border-style: solid;
+	border-width:3px;
+	border-color: rgb(170, 0, 0);
+}
+QPushButton[legal=true]{
+	border-style: solid;
+	border-width:3px;
+	border-color: rgb(85, 170, 255)
+}</string>
+  </property>
+  <widget class="QWidget" name="MainWDG">
    <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>3</number>
+    </property>
+    <property name="leftMargin">
+     <number>3</number>
+    </property>
+    <property name="topMargin">
+     <number>3</number>
+    </property>
+    <property name="rightMargin">
+     <number>3</number>
+    </property>
+    <property name="bottomMargin">
+     <number>3</number>
+    </property>
     <item>
-     <widget class="QWidget" name="MyWidget" native="true">
-      <layout class="QGridLayout" name="gridLayout">
-       <property name="leftMargin">
-        <number>3</number>
-       </property>
-       <property name="topMargin">
-        <number>3</number>
-       </property>
-       <property name="rightMargin">
-        <number>3</number>
-       </property>
-       <property name="bottomMargin">
-        <number>3</number>
-       </property>
-       <property name="spacing">
-        <number>0</number>
-       </property>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="MyLabel">
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QTableWidget" name="tableWidget">
+        <property name="columnCount">
+         <number>2</number>
+        </property>
+        <row>
+         <property name="text">
+          <string>move 1</string>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string>move 2</string>
+         </property>
+        </row>
+        <column/>
+        <column/>
+        <item row="0" column="0">
+         <property name="text">
+          <string>e4</string>
+         </property>
+        </item>
+        <item row="0" column="1">
+         <property name="text">
+          <string>e5</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTimeEdit" name="timeEdit">
+        <property name="displayFormat">
+         <string>mm:ss</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>746</width>
+     <width>575</width>
      <height>21</height>
     </rect>
    </property>
@@ -63,7 +110,6 @@
     <bool>false</bool>
    </attribute>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
