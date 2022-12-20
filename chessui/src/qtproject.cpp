@@ -30,16 +30,9 @@ BoardWidget::BoardWidget(Board* board, QWidget* parent) : mBoard(board), QWidget
 		for (int col = 0; col < board->ColCount; col++)
 		{
 			button = new SquareButton(board, row, col);
-			//QPushButton* button = new QPushButton("button");
-
-			//button->setFixedSize(45, 45);
 			layout->addWidget(button, board->RowCount - row, col);
 			button->connect(button, &QPushButton::clicked, this, &BoardWidget::ButtonClicked);
-
 			Buttons[row * board->ColCount + col] = button;
-			//connect(button, SIGNAL(clicked()), SLOT(Print()));
-
-			;
 		}
 	}
 }
@@ -47,30 +40,35 @@ BoardWidget::BoardWidget(Board* board, QWidget* parent) : mBoard(board), QWidget
 
 void BoardWidget::ButtonClicked()
 {
-	QPushButton* buttonSender = qobject_cast<QPushButton*>(sender()); // retrieve the button you have clicked
-	SquareButton* button = (SquareButton*)buttonSender;
-	for (SquareCoordinate square : button->GetLegalSquares())
+	SquareButton* selectedButton = (SquareButton*)qobject_cast<QPushButton*>(sender()); // retrieve the button you have clicked
+	int selectedIndex = selectedButton->GetIndex();
+	std::vector<int> legals = selectedButton->GetLegalSquares();
+
+	for (int i = 0; i < (mBoard->RowCount * mBoard->ColCount); i++)
 	{
-
-		qDebug() << square.Row << square.Col;
-		SquareButton* other = Buttons[square.Row * mBoard->ColCount + square.Col];
-
-		other->setProperty("legal", true);
-		other->repaint();
-		qDebug() << square.Row << square.Col;
+		if (i == selectedIndex)
+			Buttons[i]->SetSelected(true);
+		else
+		{
+			bool isLegal = std::find(legals.begin(), legals.end(), i) != legals.end();
+			Buttons[i]->SetLegal(isLegal);
+		}
 	}
 }
 
-
-std::vector<SquareCoordinate> SquareButton::GetLegalSquares()
+int SquareButton::GetIndex()
 {
-	std::vector<SquareCoordinate> squares;
+	return Row * mBoard->ColCount + Col;
+}
+
+std::vector<int> SquareButton::GetLegalSquares()
+{
+	std::vector<int> legals;
 
 	for (SquareCoordinate square : mPiece->GetLegalMoves())
-	{
-		squares.push_back(square);
-	}
-	return squares;
+		legals.push_back(square.Row * mBoard->ColCount + square.Col);
+
+	return legals;
 }
 
 SquareButton::SquareButton(Board* board, int row, int col, QWidget* parent) : mBoard(board), Row(row), Col(col), QPushButton(parent)
@@ -106,4 +104,28 @@ void SquareButton::RemovePiece()
 {
 	mPiece = nullptr;
 	setCheckable(false);
+}
+
+void SquareButton::SetLegal(bool legal)
+{
+	setProperty("legal", legal);
+	setCheckable(legal);
+	if (legal)
+		setStyleSheet("border-style: solid;	border-width:3px; border-color: rgb(85, 170, 255)");
+	else
+		setStyleSheet("border-width:0px;");
+	//QEvent event(QEvent::StyleChange);
+	//QApplication::sendEvent(this, &event);
+	//update();
+	//updateGeometry();
+}
+
+void SquareButton::SetSelected(bool selected)
+{
+	setProperty("legal", false);
+	setCheckable(selected);
+	if (selected)
+		setStyleSheet("border-style: solid; border-width:3px; border-color: rgb(170, 0, 0)");
+	else
+		setStyleSheet("border-width:0px;");
 }
