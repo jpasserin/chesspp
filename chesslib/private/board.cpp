@@ -2,7 +2,7 @@
 #include <iostream>
 
 Board::Board()
-	: RowCount(8), ColCount(8)
+	: RowCount(8), ColCount(8), ColorTurn(0)
 {
 	// Default constructor creates a standard game
 	// 8 x 8 board, two colors, 32 standard pieces
@@ -11,6 +11,9 @@ Board::Board()
 	Pieces = std::vector<Piece*>(RowCount * ColCount, nullptr);
 
 	// Whites
+	// Question? Can I pass a class pointer to a function
+	// I would like the object to be created inside the function
+	// AddPiece(Rook, COLOR_WHITE, 0, 0);
 	AddPiece(new Rook(this, COLOR_WHITE, 0, 0));
 	AddPiece(new Rook(this, COLOR_WHITE, 0, 7));
 
@@ -80,6 +83,11 @@ Piece* Board::GetRandomPiece(PieceColor color) const
 	return nullptr;
 }
 
+Piece* Board::GetRandomPiece() const
+{
+	return GetRandomPiece(Colors[ColorTurn]);
+}
+
 bool Board::AddPiece(Piece* piece)
 {
 	if (GetPiece(piece->Square.Row, piece->Square.Col))
@@ -89,6 +97,10 @@ bool Board::AddPiece(Piece* piece)
 	}
 
 	Pieces[piece->Square.Row * ColCount + piece->Square.Col] = piece;
+
+	// Register the color if not already present
+	if (std::find(Colors.begin(), Colors.end(), piece->Color) == Colors.end())
+		Colors.push_back(piece->Color);
 
 	return true;
 }
@@ -103,6 +115,9 @@ bool Board::MovePiece(Piece* piece, int row, int col)
 	Pieces[piece->Square.Row * ColCount + piece->Square.Col] = nullptr;
 	Pieces[row * ColCount + col] = piece;
 	piece->Square = SquareCoordinate(row, col);
+
+	// Set the turn to be to the next color
+	ColorTurn = (ColorTurn + 1) % Colors.size();
 
 	return true;
 }

@@ -12,25 +12,35 @@ void PlayGame()
 	std::string legalSquares;
 	for (int i = 0; i < 10; i++)
 	{
-		for (PieceColor color : {COLOR_WHITE, COLOR_BLACK})
+
+		piece = board->GetRandomPiece();
+		square = piece->GetRandomLegalMove();
+		if (square.Valid)
 		{
-			// Get a random piece and its square
-			piece = board->GetRandomPiece(color);
-
-			// Get Legal Moves
-			legalSquares = "";
-			for (SquareCoordinate legalSquare : piece->GetLegalMoves())
-				legalSquares += legalSquare.GetName() + " ";
-
-			// Move to Random Square
-			square = piece->GetRandomLegalMove();
-			if (square.Valid)
-			{
-				std::cout << "Move " << piece->Color << *piece << piece->Square.GetName() << " to " << square.GetName() << " (" << legalSquares << ")" << std::endl;
-				board->MovePiece(piece, square);
-			}
-			board->Draw();
+			std::cout << "Move " << piece->Color << *piece << piece->Square.GetName() << " to " << square.GetName() << " (" << legalSquares << ")" << std::endl;
+			board->MovePiece(piece, square);
 		}
+		board->Draw();
+
+		//for (PieceColor color : {COLOR_WHITE, COLOR_BLACK})
+		//{
+		//	// Get a random piece and its square
+		//	piece = board->GetRandomPiece(color);
+
+		//	// Get Legal Moves
+		//	legalSquares = "";
+		//	for (SquareCoordinate legalSquare : piece->GetLegalMoves())
+		//		legalSquares += legalSquare.GetName() + " ";
+
+		//	// Move to Random Square
+		//	square = piece->GetRandomLegalMove();
+		//	if (square.Valid)
+		//	{
+		//		std::cout << "Move " << piece->Color << *piece << piece->Square.GetName() << " to " << square.GetName() << " (" << legalSquares << ")" << std::endl;
+		//		board->MovePiece(piece, square);
+		//	}
+		//	board->Draw();
+		//}
 	}
 
 	delete board;

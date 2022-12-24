@@ -99,11 +99,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\boardwidget.cpp" />
+    <ClCompile Include="src\squarebutton.cpp" />
     <QtRcc Include="src\qtproject.qrc" />
     <QtUic Include="src\qtproject.ui" />
     <QtMoc Include="src\qtproject.h" />
     <ClCompile Include="src\qtproject.cpp" />
     <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\boardwidget.h" />
+    <ClInclude Include="src\squarebutton.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

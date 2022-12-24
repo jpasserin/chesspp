@@ -87,6 +87,13 @@ QPushButton[legal=true]{
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QPushButton" name="PushMeBTN">
+        <property name="text">
+         <string>Push Me</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
    </layout>

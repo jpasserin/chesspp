@@ -10,7 +10,9 @@ public:
 	const int RowCount; // Number of Rows
 	const int ColCount; // Number of Columns
 private:
-	std::vector<Piece*> Pieces; // Squares on the board, size = RowCount * ColCount
+	std::vector<Piece*> Pieces; // Pieces on the board, size = RowCount * ColCount
+	int ColorTurn; // Which color turn it is
+	std::vector<PieceColor> Colors; // Array of Colors
 
 public:
 	Board();	
@@ -18,6 +20,7 @@ public:
 	Piece* GetPiece(int row, int col) const;
 	Piece* GetPiece(SquareCoordinate square) const;
 	Piece* GetRandomPiece(PieceColor color) const;
+	Piece* GetRandomPiece() const; // Get random piece from the active color
 
 	bool AddPiece(Piece* piece);
 	bool MovePiece(Piece* piece, int row, int col);

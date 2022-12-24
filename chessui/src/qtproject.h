@@ -7,34 +7,9 @@
 #include "board.h"
 
 
+#include "boardwidget.h"
 
 
-class SquareButton : public QPushButton
-{
-    const int Row;
-    const int Col;
-    Board* mBoard;
-    Piece* mPiece;
-
-public:
-    SquareButton(Board* mBoard, int row, int col, QWidget* parent = nullptr);
-    void SetPiece(Piece* piece);
-    void RemovePiece();
-    int GetIndex();
-    std::vector<int> GetLegalSquares();
-    void SetLegal(bool legal);
-    void SetSelected(bool selected);
-};
-
-class BoardWidget : public QWidget
-{
-    Board* mBoard;
-    std::vector<SquareButton*> Buttons;
-
-public:
-    BoardWidget(Board* board, QWidget* parent = nullptr);
-    void ButtonClicked();
-};
 
 class MainWindow : public QMainWindow
 {
