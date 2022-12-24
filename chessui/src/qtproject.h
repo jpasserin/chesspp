@@ -4,7 +4,6 @@
 #include <QtWidgets/QPushButton>
 #include "ui_qtproject.h"
 
-#include "board.h"
 
 
 #include "boardwidget.h"
@@ -18,7 +17,7 @@ class MainWindow : public QMainWindow
     BoardWidget* mBoardWDG;
 
 public:
-    MainWindow(Board* board, QWidget* parent = nullptr);
+    MainWindow(QWidget* parent = nullptr);
 
 private:
     Ui::MainWindowClass ui;

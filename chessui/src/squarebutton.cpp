@@ -1,13 +1,13 @@
 #include "squarebutton.h"
 
-SquareButton::SquareButton(Board* board, int row, int col, QWidget* parent) : mBoard(board), Row(row), Col(col), QPushButton(parent)
+SquareButton::SquareButton(std::shared_ptr<Board> board, int row, int col) : mBoard(board), Row(row), Col(col), QPushButton()
 {
 	setFixedSize(45, 45);
 	setAutoExclusive(true);
 	setProperty("dark", (Row + Col) % 2 == 0);
 	setProperty("legal", false);
 
-	mPiece = board->GetPiece(row, col);
+	mPiece = mBoard->GetPiece(row, col);
 	if (mPiece)
 		SetPiece(mPiece);
 
