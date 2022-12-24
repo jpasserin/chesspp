@@ -5,28 +5,26 @@
 
 void PlayGame()
 {
-	Board* board = new Board();
+	std::unique_ptr<Board> board = std::make_unique<Board>();
 
 	board->Draw();
 
+	// question? Is it always better to delcare variables outside a loop
 	Piece* piece;
-	std::optional<SquareCoordinate> data;
+	std::optional<SquareCoordinate> square;
 	std::string legalSquares;
 	for (int i = 0; i < 10; i++)
 	{
-
 		piece = board->GetRandomPiece();
-		data = piece->GetRandomLegalMove();
-		if (data.has_value())
+		square = piece->GetRandomLegalMove();
+		if (square.has_value())
 		{
-			SquareCoordinate& square = *data;
-			std::cout << "Move " << piece->Color << *piece << piece->Square.GetName() << " to " << square.GetName() << std::endl;
-			board->MovePiece(piece, square);
+			std::cout << "Move " << piece->Color << *piece << piece->Square.GetName() << " to " << square.value().GetName() << std::endl;
+			board->MovePiece(piece, *square);
 		}
 		board->Draw();
 	}
 
-	delete board;
 	std::cout << "Good game!" << std::endl;
 }
 
