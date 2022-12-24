@@ -1,4 +1,6 @@
 #include <iostream>
+#include <optional>
+
 #include "board.h"
 
 void PlayGame()
@@ -8,16 +10,17 @@ void PlayGame()
 	board->Draw();
 
 	Piece* piece;
-	SquareCoordinate square;
+	std::optional<SquareCoordinate> data;
 	std::string legalSquares;
 	for (int i = 0; i < 10; i++)
 	{
 
 		piece = board->GetRandomPiece();
-		square = piece->GetRandomLegalMove();
-		if (square.Valid)
+		data = piece->GetRandomLegalMove();
+		if (data.has_value())
 		{
-			std::cout << "Move " << piece->Color << *piece << piece->Square.GetName() << " to " << square.GetName() << " (" << legalSquares << ")" << std::endl;
+			SquareCoordinate& square = *data;
+			std::cout << "Move " << piece->Color << *piece << piece->Square.GetName() << " to " << square.GetName() << std::endl;
 			board->MovePiece(piece, square);
 		}
 		board->Draw();

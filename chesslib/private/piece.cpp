@@ -5,21 +5,21 @@
 #include "../public/board.h"
 
 
-void CheckSquares(const std::vector<std::pair<int, int>>& pairs, const Board* board, PieceColor color, std::vector<SquareCoordinate>& out)
+// 'static' means this function can only be used in this module
+static void CheckSquares(const std::vector<std::pair<int, int>>& pairs, const Board* board, PieceColor color, std::vector<SquareCoordinate>& out)
+// This function check if the squares in a specific direction are empty or not, if not it checks the color of the piece on that square
 {
-	SquareCoordinate square;
 	Piece* piece;
 	for (std::pair<int, int > pair : pairs)
 	{
-		square = SquareCoordinate(pair.first, pair.second);
-		piece = board->GetPiece(square);
+		piece = board->GetPiece(pair.first, pair.second);
 		if (piece)
 		{
 			if (piece->Color != color)
-				out.push_back(square);
+				out.push_back({ pair.first, pair.second });
 			break;
 		}
-		out.push_back(square);
+		out.push_back({ pair.first, pair.second });
 	}
 }
 
@@ -49,7 +49,10 @@ std::vector<SquareCoordinate> Piece::GetDirectionMoves(std::vector<std::pair<int
 	return squares;
 }
 
-SquareCoordinate Piece::GetRandomLegalMove() const
+// question? optional is a c++17 feature
+// what version of c++ is used in UE
+// Is that a good use of optional?
+std::optional<SquareCoordinate> Piece::GetRandomLegalMove() const
 {
 	std::vector<SquareCoordinate> squares = GetLegalMoves();
 
@@ -60,7 +63,7 @@ SquareCoordinate Piece::GetRandomLegalMove() const
 		return squares[index];
 	}
 
-	return SquareCoordinate();
+	return {};
 }
 
 std::vector<SquareCoordinate> Rook::GetLegalMoves() const

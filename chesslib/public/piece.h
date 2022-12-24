@@ -2,9 +2,9 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <optional>
 
 class Board;
-class Duck;
 
 
 enum PieceColor {
@@ -17,10 +17,6 @@ struct SquareCoordinate
 {
 	int Row;
 	int Col;
-	bool Valid;
-
-	SquareCoordinate() : Row(-1), Col(-1), Valid(false) {}
-	SquareCoordinate(int row, int col) : Row(row), Col(col), Valid(true) {}
 
 	std::string GetName() const
 	{
@@ -28,6 +24,7 @@ struct SquareCoordinate
 		return std::string(1, ALPHABET[Col]) + std::to_string(Row + 1);
 	}
 };
+
 
 class Piece
 {
@@ -37,7 +34,7 @@ public:
 	SquareCoordinate Square;
 	const char Symbol = 'x';
 
-	Piece(Board* board, PieceColor color, int row, int col) : mBoard(board), Color(color), Square(SquareCoordinate(row, col))
+	Piece(Board* board, PieceColor color, int row, int col) : mBoard(board), Color(color), Square({ row, col })
 	{
 		std::cout << "Piece Created" << std::endl;
 	}
@@ -52,7 +49,7 @@ protected:
 
 public:
 	std::vector<SquareCoordinate> virtual GetLegalMoves() const = 0; // Returns the legal squares to move the piece to
-	SquareCoordinate GetRandomLegalMove() const;
+	std::optional<SquareCoordinate> GetRandomLegalMove() const;
 	virtual char GetSymbol() const { return Symbol; }
 	virtual const char* GetName() const { return "Piece"; }
 	friend std::ostream& operator<<(std::ostream& os, const Piece& piece);

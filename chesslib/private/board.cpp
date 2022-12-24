@@ -112,7 +112,7 @@ bool Board::MovePiece(Piece* piece, int row, int col)
 
 	Pieces[piece->Square.Row * ColCount + piece->Square.Col] = nullptr;
 	Pieces[row * ColCount + col] = piece;
-	piece->Square = SquareCoordinate(row, col);
+	piece->Square = { row, col };
 
 	// Set the turn to be to the next color
 	ColorTurn = (ColorTurn + 1) % Colors.size();

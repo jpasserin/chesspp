@@ -28,8 +28,9 @@ void BoardWidget::PushMeClicked()
 	//qDebug() << "Hello";
 
 	Piece* piece = mBoard->GetRandomPiece();
-	SquareCoordinate square = piece->GetRandomLegalMove();
-	MovePiece(piece, square);
+	std::optional<SquareCoordinate> square = piece->GetRandomLegalMove();
+	if (square.has_value())
+		MovePiece(piece, *square);
 }
 
 SquareButton* BoardWidget::GetButton(SquareCoordinate square)
