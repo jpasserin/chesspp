@@ -138,7 +138,6 @@
   <ItemGroup>
     <ClInclude Include="public\board.h" />
     <ClInclude Include="public\piece.h" />
-    <ClInclude Include="public\test.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="private\board.cpp" />

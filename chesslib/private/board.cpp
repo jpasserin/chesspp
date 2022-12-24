@@ -11,39 +11,37 @@ Board::Board()
 	Pieces = std::vector<Piece*>(RowCount * ColCount, nullptr);
 
 	// Whites
-	// Question? Can I pass a class pointer to a function
-	// I would like the object to be created inside the function
-	// AddPiece(Rook, COLOR_WHITE, 0, 0);
-	AddPiece(new Rook(this, COLOR_WHITE, 0, 0));
-	AddPiece(new Rook(this, COLOR_WHITE, 0, 7));
+	// Question? How acceptable is that code? Is using template for this correct?
+	AddPiece<Rook>(COLOR_WHITE, 0, 0);
+	AddPiece<Rook>(COLOR_WHITE, 0, 7);
 
-	AddPiece(new Knight(this, COLOR_WHITE, 0, 1));
-	AddPiece(new Knight(this, COLOR_WHITE, 0, 6));
+	AddPiece<Knight>(COLOR_WHITE, 0, 1);
+	AddPiece<Knight>(COLOR_WHITE, 0, 6);
 
-	AddPiece(new Bishop(this, COLOR_WHITE, 0, 2));
-	AddPiece(new Bishop(this, COLOR_WHITE, 0, 5));
+	AddPiece<Bishop>(COLOR_WHITE, 0, 2);
+	AddPiece<Bishop>(COLOR_WHITE, 0, 5);
 
-	AddPiece(new Queen(this, COLOR_WHITE, 0, 3));
-	AddPiece(new King(this, COLOR_WHITE, 0, 4));
+	AddPiece<Queen>(COLOR_WHITE, 0, 3);
+	AddPiece<King>(COLOR_WHITE, 0, 4);
 
 	for (int i = 0; i < ColCount; i++)
-		AddPiece(new Pawn(this, COLOR_WHITE, 1, i));
+		AddPiece<Pawn>(COLOR_WHITE, 1, i);
 
 	// Blacks
-	AddPiece(new Rook(this, COLOR_BLACK, 7, 0));
-	AddPiece(new Rook(this, COLOR_BLACK, 7, 7));
+	AddPiece<Rook>(COLOR_BLACK, 7, 0);
+	AddPiece<Rook>(COLOR_BLACK, 7, 7);
 
-	AddPiece(new Knight(this, COLOR_BLACK, 7, 1));
-	AddPiece(new Knight(this, COLOR_BLACK, 7, 6));
+	AddPiece<Knight>(COLOR_BLACK, 7, 1);
+	AddPiece<Knight>(COLOR_BLACK, 7, 6);
 
-	AddPiece(new Bishop(this, COLOR_BLACK, 7, 2));
-	AddPiece(new Bishop(this, COLOR_BLACK, 7, 5));
+	AddPiece<Bishop>(COLOR_BLACK, 7, 2);
+	AddPiece<Bishop>(COLOR_BLACK, 7, 5);
 
-	AddPiece(new Queen(this, COLOR_BLACK, 7, 3));
-	AddPiece(new King(this, COLOR_BLACK, 7, 4));
+	AddPiece<Queen>(COLOR_BLACK, 7, 3);
+	AddPiece<King>(COLOR_BLACK, 7, 4);
 
 	for (int i = 0; i < ColCount; i++)
-		AddPiece(new Pawn(this, COLOR_BLACK, 6, i));
+		AddPiece<Pawn>(COLOR_BLACK, 6, i);
 }
 
 
@@ -88,19 +86,19 @@ Piece* Board::GetRandomPiece() const
 	return GetRandomPiece(Colors[ColorTurn]);
 }
 
-bool Board::AddPiece(Piece* piece)
-{
-	if (GetPiece(piece->Square.Row, piece->Square.Col))
-	{
-		delete piece;
-		return false;
-	}
 
-	Pieces[piece->Square.Row * ColCount + piece->Square.Col] = piece;
+template <class PieceClass> bool Board::AddPiece(PieceColor color, int row, int col)
+{
+	if (GetPiece(row, col))
+		return false;
+
+	PieceClass* piece = new PieceClass(this, color, row, col);
+
+	Pieces[row * ColCount + col] = piece;
 
 	// Register the color if not already present
-	if (std::find(Colors.begin(), Colors.end(), piece->Color) == Colors.end())
-		Colors.push_back(piece->Color);
+	if (std::find(Colors.begin(), Colors.end(), color) == Colors.end())
+		Colors.push_back(color);
 
 	return true;
 }

@@ -22,9 +22,10 @@ public:
 	Piece* GetRandomPiece(PieceColor color) const;
 	Piece* GetRandomPiece() const; // Get random piece from the active color
 
-	bool AddPiece(Piece* piece);
+	template <class PieceClass> bool AddPiece(PieceColor color, int row, int col);
 	bool MovePiece(Piece* piece, int row, int col);
 	bool MovePiece(Piece* piece, SquareCoordinate square);
+
 
 	void Draw();
 };
