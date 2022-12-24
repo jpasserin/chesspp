@@ -50,11 +50,6 @@ Piece* Board::GetPiece(int row, int col) const
 	return Pieces[row * ColCount + col];
 }
 
-Piece* Board::GetPiece(SquareCoordinate square) const
-{
-	return GetPiece(square.Row, square.Col);
-}
-
 Piece* Board::GetRandomPiece(PieceColor color) const
 {
 	std::vector<Piece*> colorPieces;

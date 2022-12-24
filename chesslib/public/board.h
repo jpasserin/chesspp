@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-#include <unordered_map>
 
 #include "piece.h"
 
@@ -18,7 +17,6 @@ public:
 	Board();	
 
 	Piece* GetPiece(int row, int col) const;
-	Piece* GetPiece(SquareCoordinate square) const;
 	Piece* GetRandomPiece(PieceColor color) const;
 	Piece* GetRandomPiece() const; // Get random piece from the active color
 
