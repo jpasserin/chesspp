@@ -10,10 +10,10 @@ class BoardWidget : public QWidget
     std::shared_ptr<Board> mBoard;
     std::vector<SquareButton*> Buttons;
 
-public:
-    BoardWidget(QWidget* parent = nullptr);
     SquareButton* GetButton(SquareCoordinate square);
     void ButtonClicked();
-    void PushMeClicked();
     void MovePiece(Piece* piece, SquareCoordinate square);
+public:
+    BoardWidget(QWidget* parent = nullptr);
+    void PushMeClicked();
 };

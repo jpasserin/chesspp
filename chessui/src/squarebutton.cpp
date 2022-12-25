@@ -7,9 +7,7 @@ SquareButton::SquareButton(std::shared_ptr<Board> board, int row, int col) : mBo
 	setProperty("dark", (Row + Col) % 2 == 0);
 	setProperty("legal", false);
 
-	mPiece = mBoard->GetPiece(row, col);
-	if (mPiece)
-		SetPiece(mPiece);
+	UpdateIcon();
 
 	//button->setText(QString::fromStdString(std::to_string(row * board->ColCount + col)));
 	//button->setText(QString::fromStdString(std::to_string(row  + col)));
@@ -20,37 +18,28 @@ int SquareButton::GetIndex()
 	return Row * mBoard->ColCount + Col;
 }
 
-
-void SquareButton::SetPiece(Piece* piece)
+void SquareButton::UpdateIcon()
 {
-	mPiece = piece;
-	setCheckable(true);
+	Piece* piece = mBoard->GetPiece(Row, Col);
 
-	std::string path = "D:/Jeremie/Code/References/chesspp/chessui/src/img/";
-	std::string name = path + piece->GetName() + "_" + std::to_string(mPiece->Color) + ".png";
+	if (piece)
+	{
+		//Q_INIT_RESOURCE(qtproject);
+		
+		setCheckable(true);
+		std::string path = ":/QtProject/img/";
+		std::string name = path + piece->GetName() + "_" + std::to_string(piece->Color) + ".png";
 
-	QPixmap pixmap(QString::fromStdString(name));
-	QIcon ButtonIcon(pixmap);
-	setIcon(ButtonIcon);
-	setIconSize(pixmap.rect().size());
-}
-
-void SquareButton::RemovePiece()
-{
-	mPiece = nullptr;
-	setCheckable(false);
-	setIcon(QIcon());
-}
-
-
-std::vector<int> SquareButton::GetLegalSquares()
-{
-	std::vector<int> legals;
-
-	for (SquareCoordinate square : mPiece->GetLegalMoves())
-		legals.push_back(square.Row * mBoard->ColCount + square.Col);
-
-	return legals;
+		QPixmap pixmap(QString::fromStdString(name));
+		QIcon ButtonIcon(pixmap);
+		setIcon(ButtonIcon);
+		setIconSize(pixmap.rect().size());
+	}
+	else
+	{
+		setCheckable(false);
+		setIcon(QIcon());
+	}
 }
 
 void SquareButton::SetLegal(bool legal)

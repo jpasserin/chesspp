@@ -1,4 +1,16 @@
 <RCC>
-    <qresource prefix="QtProject">
+    <qresource prefix="/QtProject">
+        <file>img/Bishop_0.png</file>
+        <file>img/Bishop_1.png</file>
+        <file>img/King_0.png</file>
+        <file>img/King_1.png</file>
+        <file>img/Knight_0.png</file>
+        <file>img/Knight_1.png</file>
+        <file>img/Pawn_0.png</file>
+        <file>img/Pawn_1.png</file>
+        <file>img/Queen_0.png</file>
+        <file>img/Queen_1.png</file>
+        <file>img/Rook_0.png</file>
+        <file>img/Rook_1.png</file>
     </qresource>
 </RCC>

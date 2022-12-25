@@ -43,19 +43,24 @@ SquareButton* BoardWidget::GetButton(SquareCoordinate square)
 void BoardWidget::MovePiece(Piece* piece, SquareCoordinate square)
 {
 	SquareButton* oldButton = GetButton(piece->Square);
-	oldButton->RemovePiece();
+	SquareButton* newButton = GetButton(square);
 
 	mBoard->MovePiece(piece, square);
 
-	SquareButton* newButton = GetButton(square);
-	newButton->SetPiece(piece);
+	oldButton->UpdateIcon();
+	newButton->UpdateIcon();
 }
 
 void BoardWidget::ButtonClicked()
 {
 	SquareButton* selectedButton = (SquareButton*)qobject_cast<QPushButton*>(sender()); // retrieve the button you have clicked
 	int selectedIndex = selectedButton->GetIndex();
-	std::vector<int> legals = selectedButton->GetLegalSquares();
+
+	// Get Legal Moves
+	Piece* piece = mBoard->GetPiece(selectedButton->Row, selectedButton->Col);
+	std::vector<int> legals;
+	for (SquareCoordinate square : piece->GetLegalMoves())
+		legals.push_back(square.Row * mBoard->ColCount + square.Col);
 
 	for (int i = 0; i < (mBoard->RowCount * mBoard->ColCount); i++)
 	{
