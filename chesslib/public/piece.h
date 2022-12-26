@@ -33,6 +33,7 @@ public:
 	const PieceColor Color;
 	SquareCoordinate Square;
 	const char Symbol = 'x';
+	const int value = 0;
 
 	Piece(Board* board, PieceColor color, int row, int col) : mBoard(board), Color(color), Square({ row, col })
 	{
@@ -60,6 +61,7 @@ class Rook : public Piece
 {
 public:
 	const char Symbol = 'R';
+	const int value = 5;
 
 	Rook(Board* board, PieceColor color, int row, int col) : Piece(board, color, row, col) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'R' : 'r'; };
@@ -71,6 +73,7 @@ class Bishop : public Piece
 {
 public:
 	const char Symbol = 'B';
+	const int value = 3;
 
 	Bishop(Board* board, PieceColor color, int row, int col) : Piece(board, color, row, col) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'B' : 'b'; };
@@ -82,6 +85,7 @@ class Queen : public Piece
 {
 public:
 	const char Symbol = 'Q';
+	const int value = 9;
 
 	Queen(Board* board, PieceColor color, int row, int col) : Piece(board, color, row, col) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'Q' : 'q'; };
@@ -93,6 +97,7 @@ class King : public Piece
 {
 public:
 	const char Symbol = 'K';
+	const int value = 10;
 
 	King(Board* board, PieceColor color, int row, int col) : Piece(board, color, row, col) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'K' : 'k'; };
@@ -104,6 +109,7 @@ class Knight : public Piece
 {
 public:
 	const char Symbol = 'N';
+	const int value = 3;
 
 	Knight(Board* board, PieceColor color, int row, int col) : Piece(board, color, row, col) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'N' : 'n'; };
@@ -115,6 +121,7 @@ class Pawn : public Piece
 {
 public:
 	const char Symbol = 'P';
+	const int value = 1;
 
 	Pawn(Board* board, PieceColor color, int row, int col) : Piece(board, color, row, col) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'P' : 'p'; };
