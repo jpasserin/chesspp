@@ -2,7 +2,7 @@
 #include <iostream>
 
 Board::Board()
-	: RowCount(8), ColCount(8), ColorTurn(0)
+	: RowCount(8), ColCount(8), ColorTurn(0), GameStarted(false)
 {
 	// Default constructor creates a standard game
 	// 8 x 8 board, two colors, 32 standard pieces
@@ -93,13 +93,17 @@ template <class PieceClass> bool Board::AddPiece(PieceColor color, int row, int 
 
 	// Register the color if not already present
 	if (std::find(Colors.begin(), Colors.end(), color) == Colors.end())
+	{
 		Colors.push_back(color);
+		TimeLeft.push_back(300000);
+	}
 
 	return true;
 }
 
 bool Board::MovePiece(Piece* piece, int row, int col)
 {
+
 	// Delete old piece
 	const Piece* oldPiece = GetPiece(row, col);
 	if (oldPiece)
@@ -111,10 +115,44 @@ bool Board::MovePiece(Piece* piece, int row, int col)
 	Pieces[row * ColCount + col] = piece;
 	piece->Square = { row, col };
 
+	// Update Time
+	using namespace std::chrono;
+	milliseconds currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
+
+	if (GameStarted)
+	{
+		milliseconds delta = currentTime - LastMoveTime;
+		TimeLeft[ColorTurn] = TimeLeft[ColorTurn] - delta.count();
+	}
+	else
+	{
+		GameStarted = true;
+	}
+
+	LastMoveTime = currentTime;
+
 	// Set the turn to be to the next color
 	ColorTurn = (ColorTurn + 1) % Colors.size();
 
 	return true;
+}
+
+unsigned int Board::GetTimeLeft(const PieceColor& color) const
+{
+	if (GameStarted && color == ColorTurn)
+	{
+		using namespace std::chrono;
+		milliseconds currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
+		milliseconds delta = currentTime - LastMoveTime;
+		return TimeLeft[color] - delta.count();
+	}
+
+	return TimeLeft[color];
+}
+
+unsigned int Board::GetTimeLeft() const
+{
+	return GetTimeLeft(Colors[ColorTurn]);
 }
 
 bool Board::MovePiece(Piece* piece, const SquareCoordinate& square)
