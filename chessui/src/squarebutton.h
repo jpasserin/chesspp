@@ -17,8 +17,8 @@ private:
     std::shared_ptr<Board> mBoard;
 
 public:
-    SquareButton(std::shared_ptr<Board> mBoard, int row, int col);
-    int GetIndex();
+    SquareButton(const std::shared_ptr<Board> mBoard, int row, int col);
+    int GetIndex() const;
 
     void UpdateIcon();
 

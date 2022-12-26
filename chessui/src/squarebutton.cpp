@@ -1,6 +1,6 @@
 #include "squarebutton.h"
 
-SquareButton::SquareButton(std::shared_ptr<Board> board, int row, int col) : mBoard(board), Row(row), Col(col), QPushButton()
+SquareButton::SquareButton(const std::shared_ptr<Board> board, int row, int col) : mBoard(board), Row(row), Col(col), QPushButton()
 {
 	setFixedSize(45, 45);
 	setAutoExclusive(true);
@@ -13,14 +13,14 @@ SquareButton::SquareButton(std::shared_ptr<Board> board, int row, int col) : mBo
 	//button->setText(QString::fromStdString(std::to_string(row  + col)));
 }
 
-int SquareButton::GetIndex()
+int SquareButton::GetIndex() const
 {
 	return Row * mBoard->ColCount + Col;
 }
 
 void SquareButton::UpdateIcon()
 {
-	Piece* piece = mBoard->GetPiece(Row, Col);
+	const Piece* piece = mBoard->GetPiece(Row, Col);
 
 	if (piece)
 	{

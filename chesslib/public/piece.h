@@ -46,7 +46,7 @@ public:
 	}
 
 protected:
-	std::vector<SquareCoordinate> GetDirectionMoves(std::vector<std::pair<int, int>> directions, bool recursive) const;
+	std::vector<SquareCoordinate> GetDirectionMoves(const std::vector<std::pair<int, int>> directions, bool recursive) const;
 
 public:
 	std::vector<SquareCoordinate> virtual GetLegalMoves() const = 0; // Returns the legal squares to move the piece to

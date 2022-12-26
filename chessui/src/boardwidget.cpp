@@ -35,7 +35,7 @@ void BoardWidget::PushMeClicked()
 		MovePiece(piece, *square);
 }
 
-SquareButton* BoardWidget::GetButton(SquareCoordinate square)
+SquareButton* BoardWidget::GetButton(SquareCoordinate square) const
 {
 	return Buttons[square.Row * mBoard->ColCount + square.Col];
 }

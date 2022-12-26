@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <memory>
 
 #include "piece.h"
 
@@ -16,14 +17,14 @@ private:
 public:
 	Board();	
 
-	Piece* GetPiece(int row, int col) const;
-	Piece* GetRandomPiece(PieceColor color) const;
+	Piece* GetPiece(const int& row, const int& col) const;
+	Piece* GetRandomPiece(const PieceColor& color) const;
 	Piece* GetRandomPiece() const; // Get random piece from the active color
 
 	template <class PieceClass> bool AddPiece(PieceColor color, int row, int col);
 	bool MovePiece(Piece* piece, int row, int col);
-	bool MovePiece(Piece* piece, SquareCoordinate square);
+	bool MovePiece(Piece* piece, const SquareCoordinate& square);
 
 
-	void Draw();
+	void Draw() const;
 };

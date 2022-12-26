@@ -8,6 +8,8 @@ Board::Board()
 	// 8 x 8 board, two colors, 32 standard pieces
 	std::cout << "New Standard Game" << std::endl;
 
+	// Question? I'm using a vector. 
+	// The size of the Array won't change but I don't know what is the size of it at compile time.
 	Pieces = std::vector<Piece*>(RowCount * ColCount, nullptr);
 
 	// Whites
@@ -44,22 +46,19 @@ Board::Board()
 		AddPiece<Pawn>(COLOR_BLACK, 6, i);
 }
 
-
-Piece* Board::GetPiece(int row, int col) const
+// Question? is it too much to use 'const int&' instead of just 'int'
+// I'm guessing I can use that when it's a class, but it's not really needed for something like int, float or bool 
+Piece* Board::GetPiece(const int& row, const int& col) const
 {
 	return Pieces[row * ColCount + col];
 }
 
-Piece* Board::GetRandomPiece(PieceColor color) const
+Piece* Board::GetRandomPiece(const PieceColor& color) const
 {
 	std::vector<Piece*> colorPieces;
 	for (Piece* piece : Pieces)
-	{
 		if (piece && piece->Color == color)
-		{
 			colorPieces.push_back(piece);
-		}
-	}
 	
 	if (!colorPieces.size())
 		return nullptr;
@@ -73,6 +72,7 @@ Piece* Board::GetRandomPiece(PieceColor color) const
 		if (piece->GetLegalMoves().size())
 			return piece;
 	}
+
 	return nullptr;
 }
 
@@ -98,14 +98,16 @@ template <class PieceClass> bool Board::AddPiece(PieceColor color, int row, int 
 	return true;
 }
 
-
 bool Board::MovePiece(Piece* piece, int row, int col)
 {
-	Piece* oldPiece = GetPiece(row, col);
+	// Delete old piece
+	const Piece* oldPiece = GetPiece(row, col);
 	if (oldPiece)
 		delete oldPiece;
 
+	// Remove piece from old square
 	Pieces[piece->Square.Row * ColCount + piece->Square.Col] = nullptr;
+	// Move piece to the new square
 	Pieces[row * ColCount + col] = piece;
 	piece->Square = { row, col };
 
@@ -115,19 +117,20 @@ bool Board::MovePiece(Piece* piece, int row, int col)
 	return true;
 }
 
-bool Board::MovePiece(Piece* piece, SquareCoordinate square)
+bool Board::MovePiece(Piece* piece, const SquareCoordinate& square)
 {
 	return MovePiece(piece, square.Row, square.Col);
 }
 
-void Board::Draw()
+
+void Board::Draw() const
 {
 	char s;
 	for (int row = RowCount - 1; row >= 0; row--)
 	{
 		for (int col = 0; col < ColCount; col++)
 		{
-			Piece* piece = GetPiece(row, col);
+			const Piece* piece = GetPiece(row, col);
 			if (piece)
 				s = piece->GetSymbol();
 			else

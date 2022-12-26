@@ -10,7 +10,7 @@ class BoardWidget : public QWidget
     std::shared_ptr<Board> mBoard;
     std::vector<SquareButton*> Buttons;
 
-    SquareButton* GetButton(SquareCoordinate square);
+    SquareButton* GetButton(SquareCoordinate square) const;
     void ButtonClicked();
     void MovePiece(Piece* piece, SquareCoordinate square);
 public:

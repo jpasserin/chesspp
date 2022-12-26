@@ -9,7 +9,7 @@ void PlayGame()
 
 	board->Draw();
 
-	// question? Is it always better to delcare variables outside a loop
+	// question? Is it always better to declare variables outside a loop
 	Piece* piece;
 	std::optional<SquareCoordinate> square;
 	std::string legalSquares;
