@@ -1,13 +1,9 @@
 #pragma once
-#include <QtWidgets/QPushButton>
-#include <QResource>
-
-#include <vector>
-#include "ui_qtproject.h"
+#include <QPushButton>
+#include "ui_mainwindow.h"
 
 #include "board.h"
-
-
+ 
 class SquareButton : public QPushButton
 {
 public:

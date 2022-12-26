@@ -1,14 +1,8 @@
 #pragma once
-#include <vector>
-#include <QtWidgets/QMainWindow>
-#include <QtWidgets/QPushButton>
-#include "ui_qtproject.h"
+#include <QMainWindow>
 
-
-
+#include "ui_mainwindow.h"
 #include "boardwidget.h"
-
-
 
 class MainWindow : public QMainWindow
 {

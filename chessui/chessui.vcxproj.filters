@@ -23,10 +23,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="src\qtproject.qrc">
+    <QtRcc Include="src\public\mainwindow.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-    <QtUic Include="src\private\mainwindow.ui">
+    <QtUic Include="src\public\mainwindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtMoc Include="src\public\mainwindow.h">

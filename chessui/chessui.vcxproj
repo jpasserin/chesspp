@@ -102,8 +102,8 @@
   <ItemGroup>
     <ClCompile Include="src\private\boardwidget.cpp" />
     <ClCompile Include="src\private\squarebutton.cpp" />
-    <QtRcc Include="src\qtproject.qrc" />
-    <QtUic Include="src\private\mainwindow.ui" />
+    <QtRcc Include="src\public\mainwindow.qrc" />
+    <QtUic Include="src\public\mainwindow.ui" />
     <QtMoc Include="src\public\mainwindow.h" />
     <ClCompile Include="src\private\mainwindow.cpp" />
     <ClCompile Include="src\main.cpp" />

@@ -81,11 +81,22 @@ QPushButton[legal=true]{
        </widget>
       </item>
       <item>
-       <widget class="QTimeEdit" name="timeEdit">
-        <property name="displayFormat">
-         <string>mm:ss</string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QTimeEdit" name="WhiteTE">
+          <property name="displayFormat">
+           <string>mm:ss</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTimeEdit" name="BlackTE">
+          <property name="displayFormat">
+           <string>mm:ss</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
        <widget class="QPushButton" name="PushMeBTN">
@@ -120,7 +131,7 @@ QPushButton[legal=true]{
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="qtproject.qrc"/>
+  <include location="mainwindow.qrc"/>
  </resources>
  <connections/>
 </ui>

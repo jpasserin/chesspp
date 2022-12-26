@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include <QtWidgets/QPushButton>
+#include <QGridLayout>
 
 #include "board.h"
 #include "squarebutton.h"
