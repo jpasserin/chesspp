@@ -18,5 +18,6 @@ private:
     Ui::MainWindowClass ui;
 
     void UpdateClock();
+    void UpdateStatusBar(std::string move);
 
 };

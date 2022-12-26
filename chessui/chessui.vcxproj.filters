@@ -51,8 +51,10 @@
     <ClInclude Include="src\public\squarebutton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\public\boardwidget.h">
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="src\public\boardwidget.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </QtMoc>
   </ItemGroup>
 </Project>

@@ -124,11 +124,11 @@ public:
 class Pawn : public Piece
 {
 public:
-	const char Symbol = 'P';
+	const char Symbol = ' ';
 	const int value = 1;
 
 	Pawn(Board* board, PieceColor color, unsigned char row, unsigned char col) : Piece(board, color, row, col) {}
-	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'P' : 'p'; };
+	char GetSymbol() const override { return (Color == COLOR_WHITE) ? ' ' : ' '; };
 	virtual const char* GetName() const { return "Pawn"; }
 	std::vector<SquareCoordinate> virtual GetLegalMoves() const;
 };

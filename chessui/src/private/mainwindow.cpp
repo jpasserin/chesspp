@@ -1,5 +1,4 @@
 #include "../public/mainwindow.h"
-#include <thread>
 
 #include <QDebug>
 #include <QTimer>
@@ -16,7 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
 	layout->insertWidget(0, mBoardWDG, Qt::AlignLeft);
 
 	// Connect the Push Button
-	ui.PushMeBTN->connect(ui.PushMeBTN, &QPushButton::clicked, mBoardWDG, &BoardWidget::PushMeClicked);
+	QObject::connect(ui.PushMeBTN, &QPushButton::clicked, mBoardWDG, &BoardWidget::PushMeClicked);
+	QObject::connect(mBoardWDG, &BoardWidget::PieceMoved, this, &MainWindow::UpdateStatusBar);
 
 	UpdateClock();
 
@@ -24,6 +24,11 @@ MainWindow::MainWindow(QWidget *parent)
 	connect(timer, &QTimer::timeout, this, QOverload<>::of(&MainWindow::UpdateClock));
 	timer->start(1000);
 
+}
+
+void MainWindow::UpdateStatusBar(std::string move)
+{
+	ui.statusBar->showMessage(QString::fromStdString(move), 0);
 }
 
 void MainWindow::UpdateClock()

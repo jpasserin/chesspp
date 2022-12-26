@@ -109,7 +109,7 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\public\boardwidget.h" />
+    <QtMoc Include="src\public\boardwidget.h" />
     <ClInclude Include="src\public\squarebutton.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -7,6 +7,8 @@
 
 class BoardWidget : public QWidget
 {
+    Q_OBJECT
+
 public:
     std::shared_ptr<Board> mBoard;
 private:
@@ -18,4 +20,7 @@ private:
 public:
     BoardWidget(QWidget* parent = nullptr);
     void PushMeClicked();
+
+signals:
+    void PieceMoved(std::string move);
 };

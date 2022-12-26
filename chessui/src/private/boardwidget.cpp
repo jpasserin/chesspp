@@ -49,6 +49,10 @@ void BoardWidget::MovePiece(Piece* piece, SquareCoordinate square)
 
 	oldButton->UpdateIcon();
 	newButton->UpdateIcon();
+
+	std::string move = std::string(1, piece->GetSymbol()) + square.GetName();
+	
+	emit PieceMoved(move);
 }
 
 void BoardWidget::ButtonClicked()
