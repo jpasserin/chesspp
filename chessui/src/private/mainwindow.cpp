@@ -1,4 +1,4 @@
-#include "qtproject.h"
+#include "../public/mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)

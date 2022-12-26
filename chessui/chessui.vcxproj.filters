@@ -26,13 +26,13 @@
     <QtRcc Include="src\qtproject.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-    <QtUic Include="src\qtproject.ui">
+    <QtUic Include="src\private\mainwindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtMoc Include="src\qtproject.h">
+    <QtMoc Include="src\public\mainwindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <ClCompile Include="src\qtproject.cpp">
+    <ClCompile Include="src\private\mainwindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -40,18 +40,18 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\squarebutton.cpp">
+    <ClCompile Include="src\private\squarebutton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\boardwidget.cpp">
+    <ClCompile Include="src\private\boardwidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\squarebutton.h">
+    <ClInclude Include="src\public\squarebutton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\boardwidget.h">
+    <ClInclude Include="src\public\boardwidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,4 +1,4 @@
-#include "squarebutton.h"
+#include "../public/squarebutton.h"
 
 SquareButton::SquareButton(const std::shared_ptr<Board> board, int row, int col) : mBoard(board), Row(row), Col(col), QPushButton()
 {
