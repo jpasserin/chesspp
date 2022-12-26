@@ -8,8 +8,8 @@
 class Board
 {
 public:
-	const int RowCount; // Number of Rows
-	const int ColCount; // Number of Columns
+	const unsigned char RowCount; // Number of Rows, Max size 255
+	const unsigned char ColCount; // Number of Columns, Max size 255
 	int ColorTurn; // Which color turn it is
 private:
 	std::vector<Piece*> Pieces; // Pieces on the board, size = RowCount * ColCount
@@ -23,12 +23,12 @@ public:
 
 	Board(const Board&) = delete; // Prevent copies of the class
 
-	Piece* GetPiece(const int& row, const int& col) const;
+	Piece* GetPiece(const unsigned char& row, const unsigned char& col) const;
 	Piece* GetRandomPiece(const PieceColor& color) const;
 	Piece* GetRandomPiece() const; // Get random piece from the active color
 
-	template <class PieceClass> bool AddPiece(PieceColor color, int row, int col);
-	bool MovePiece(Piece* piece, int row, int col);
+	template <class PieceClass> bool AddPiece(PieceColor color, unsigned char row, unsigned char col);
+	bool MovePiece(Piece* piece, unsigned char row, unsigned char col);
 	bool MovePiece(Piece* piece, const SquareCoordinate& square);
 
 	unsigned int GetTimeLeft(const PieceColor& color) const;

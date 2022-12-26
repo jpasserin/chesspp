@@ -48,7 +48,7 @@ Board::Board()
 
 // Question? is it too much to use 'const int&' instead of just 'int'
 // I'm guessing I can use that when it's a class, but it's not really needed for something like int, float or bool 
-Piece* Board::GetPiece(const int& row, const int& col) const
+Piece* Board::GetPiece(const unsigned char& row, const unsigned char& col) const
 {
 	return Pieces[row * ColCount + col];
 }
@@ -82,7 +82,7 @@ Piece* Board::GetRandomPiece() const
 }
 
 
-template <class PieceClass> bool Board::AddPiece(PieceColor color, int row, int col)
+template <class PieceClass> bool Board::AddPiece(PieceColor color, unsigned char row, unsigned char col)
 {
 	if (GetPiece(row, col))
 		return false;
@@ -101,7 +101,7 @@ template <class PieceClass> bool Board::AddPiece(PieceColor color, int row, int 
 	return true;
 }
 
-bool Board::MovePiece(Piece* piece, int row, int col)
+bool Board::MovePiece(Piece* piece, unsigned char row, unsigned char col)
 {
 
 	// Delete old piece

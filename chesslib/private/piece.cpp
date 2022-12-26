@@ -6,11 +6,11 @@
 
 
 // 'static' means this function can only be used in this module
-static void CheckSquares(const std::vector<std::pair<int, int>>& pairs, const Board* board, PieceColor color, std::vector<SquareCoordinate>& out)
+static void CheckSquares(const std::vector<std::pair<unsigned char, unsigned char>>& pairs, const Board* board, PieceColor color, std::vector<SquareCoordinate>& out)
 // This function check if the squares in a specific direction are empty or not, if not it checks the color of the piece on that square
 {
 	const Piece* piece;
-	for (std::pair<int, int > pair : pairs)
+	for (std::pair<unsigned char, unsigned char > pair : pairs)
 	{
 		piece = board->GetPiece(pair.first, pair.second);
 		if (piece)
@@ -23,12 +23,12 @@ static void CheckSquares(const std::vector<std::pair<int, int>>& pairs, const Bo
 	}
 }
 
-std::vector<SquareCoordinate> Piece::GetDirectionMoves(const std::vector<std::pair<int, int>> directions, bool recursive = true) const
+std::vector<SquareCoordinate> Piece::GetDirectionMoves(const std::vector<std::pair<char, char>> directions, bool recursive = true) const
 {
-	std::vector<std::pair<int, int>> pairs;
+	std::vector<std::pair<unsigned char, unsigned char>> pairs;
 	std::vector<SquareCoordinate> squares;
 	int nextRow, nextCol;
-	for (std::pair<int, int> dir : directions)
+	for (std::pair<char, char> dir : directions)
 	{
 		nextRow = Square.Row + dir.first;
 		nextCol = Square.Col + dir.second;
@@ -93,7 +93,7 @@ std::vector<SquareCoordinate> Knight::GetLegalMoves() const
 
 std::vector<SquareCoordinate> Pawn::GetLegalMoves() const
 {
-	std::vector<std::pair<int, int>> directions;
+	std::vector<std::pair<char, char>> directions;
 	if (Color == COLOR_WHITE)
 		directions = { {1,0}, };
 	else
