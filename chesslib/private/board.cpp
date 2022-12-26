@@ -96,7 +96,6 @@ template <class PieceClass> bool Board::AddPiece(PieceColor color, unsigned char
 
 bool Board::MovePiece(Piece* piece, unsigned char row, unsigned char col)
 {
-
 	// Delete old piece
 	const Piece* oldPiece = GetPiece(row, col);
 	if (oldPiece)
@@ -107,6 +106,7 @@ bool Board::MovePiece(Piece* piece, unsigned char row, unsigned char col)
 	// Move piece to the new square
 	Pieces[row * ColCount + col] = piece;
 	piece->Square = { row, col };
+	piece->HasMoved = true;
 
 	// Update Time
 	using namespace std::chrono;

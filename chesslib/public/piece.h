@@ -35,7 +35,8 @@ public:
 	const PieceColor Color;
 	SquareCoordinate Square;
 	const char Symbol = 'x';
-	const int value = 0;
+	const unsigned char value = 0;
+	bool HasMoved = false;
 
 	Piece(Board* board, PieceColor color, unsigned char row, unsigned char col) : mBoard(board), Color(color), Square({ row, col })
 	{
@@ -65,8 +66,9 @@ class Rook : public Piece
 {
 public:
 	const char Symbol = 'R';
-	const int value = 5;
+	const unsigned char value = 5;
 
+	// Question? Why do I have to reimplement the Constructor and GetSymbol!
 	Rook(Board* board, PieceColor color, unsigned char row, unsigned char col) : Piece(board, color, row, col) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'R' : 'r'; };
 	virtual const char* GetName() const { return "Rook"; }
@@ -77,7 +79,7 @@ class Bishop : public Piece
 {
 public:
 	const char Symbol = 'B';
-	const int value = 3;
+	const unsigned char value = 3;
 
 	Bishop(Board* board, PieceColor color, unsigned char row, unsigned char col) : Piece(board, color, row, col) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'B' : 'b'; };
@@ -89,7 +91,7 @@ class Queen : public Piece
 {
 public:
 	const char Symbol = 'Q';
-	const int value = 9;
+	const unsigned char value = 9;
 
 	Queen(Board* board, PieceColor color, unsigned char row, unsigned char col) : Piece(board, color, row, col) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'Q' : 'q'; };
@@ -101,7 +103,7 @@ class King : public Piece
 {
 public:
 	const char Symbol = 'K';
-	const int value = 10;
+	const unsigned char value = 10;
 
 	King(Board* board, PieceColor color, unsigned char row, unsigned char col) : Piece(board, color, row, col) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'K' : 'k'; };
@@ -113,7 +115,7 @@ class Knight : public Piece
 {
 public:
 	const char Symbol = 'N';
-	const int value = 3;
+	const unsigned char value = 3;
 
 	Knight(Board* board, PieceColor color, unsigned char row, unsigned char col) : Piece(board, color, row, col) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? 'N' : 'n'; };
@@ -125,7 +127,7 @@ class Pawn : public Piece
 {
 public:
 	const char Symbol = ' ';
-	const int value = 1;
+	const unsigned char value = 1;
 
 	Pawn(Board* board, PieceColor color, unsigned char row, unsigned char col) : Piece(board, color, row, col) {}
 	char GetSymbol() const override { return (Color == COLOR_WHITE) ? ' ' : ' '; };

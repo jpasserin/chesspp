@@ -95,9 +95,15 @@ std::vector<SquareCoordinate> Pawn::GetLegalMoves() const
 {
 	std::vector<std::pair<char, char>> directions;
 	if (Color == COLOR_WHITE)
-		directions = { {1,0}, };
+		if (HasMoved)
+			directions = { {1,0}, };
+		else
+			directions = { {1,0}, {2,0} };
 	else
-		directions = { {-1,0}, };
+		if (HasMoved)
+			directions = { {-1,0}, };
+		else
+			directions = { {-1,0}, {-2,0} };
 	return GetDirectionMoves(directions, false);
 }
 
