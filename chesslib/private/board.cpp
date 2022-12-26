@@ -2,7 +2,7 @@
 #include <iostream>
 
 Board::Board()
-	: RowCount(8), ColCount(8), ColorTurn(0), GameStarted(false)
+	: RowCount(8), ColCount(8), ColorTurn(0), GameStarted(false), Pieces(8 * 8, nullptr), ColorCount(2), TimeLeft(2, 300000)
 {
 	// Default constructor creates a standard game
 	// 8 x 8 board, two colors, 32 standard pieces
@@ -10,7 +10,7 @@ Board::Board()
 
 	// Question? I'm using a vector. 
 	// The size of the Array won't change but I don't know what is the size of it at compile time.
-	Pieces = std::vector<Piece*>(RowCount * ColCount, nullptr);
+	// Pieces = std::vector<Piece*>(RowCount * ColCount, nullptr);
 
 	// Whites
 	// Question? How acceptable is that code? Is using template for this correct?
@@ -78,7 +78,7 @@ Piece* Board::GetRandomPiece(const PieceColor& color) const
 
 Piece* Board::GetRandomPiece() const
 {
-	return GetRandomPiece(Colors[ColorTurn]);
+	return GetRandomPiece(PieceColor(ColorTurn));
 }
 
 
@@ -90,13 +90,6 @@ template <class PieceClass> bool Board::AddPiece(PieceColor color, unsigned char
 	PieceClass* piece = new PieceClass(this, color, row, col);
 
 	Pieces[row * ColCount + col] = piece;
-
-	// Register the color if not already present
-	if (std::find(Colors.begin(), Colors.end(), color) == Colors.end())
-	{
-		Colors.push_back(color);
-		TimeLeft.push_back(300000);
-	}
 
 	return true;
 }
@@ -132,7 +125,7 @@ bool Board::MovePiece(Piece* piece, unsigned char row, unsigned char col)
 	LastMoveTime = currentTime;
 
 	// Set the turn to be to the next color
-	ColorTurn = (ColorTurn + 1) % Colors.size();
+	ColorTurn = (ColorTurn + 1) % ColorCount;
 
 	return true;
 }
@@ -152,7 +145,7 @@ unsigned int Board::GetTimeLeft(const PieceColor& color) const
 
 unsigned int Board::GetTimeLeft() const
 {
-	return GetTimeLeft(Colors[ColorTurn]);
+	return GetTimeLeft(PieceColor(ColorTurn));
 }
 
 bool Board::MovePiece(Piece* piece, const SquareCoordinate& square)

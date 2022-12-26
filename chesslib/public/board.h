@@ -10,10 +10,11 @@ class Board
 public:
 	const unsigned char RowCount; // Number of Rows, Max size 255
 	const unsigned char ColCount; // Number of Columns, Max size 255
-	int ColorTurn; // Which color turn it is
+	unsigned char ColorTurn; // Which color turn it is
+	unsigned char ColorCount; //How many colors are playing
+
 private:
 	std::vector<Piece*> Pieces; // Pieces on the board, size = RowCount * ColCount
-	std::vector<PieceColor> Colors; // Array of Colors
 	std::vector<unsigned int> TimeLeft; // Array of Colors
 	std::chrono::milliseconds LastMoveTime;
 	bool GameStarted;

@@ -9,7 +9,9 @@ class Board;
 
 enum PieceColor {
 	COLOR_WHITE,
-	COLOR_BLACK
+	COLOR_BLACK,
+	COLOR_PURPLE,
+	COLOR_GREEN
 };
 
 
