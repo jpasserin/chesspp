@@ -21,6 +21,8 @@ private:
 public:
 	Board();	
 
+	Board(const Board&) = delete; // Prevent copies of the class
+
 	Piece* GetPiece(const int& row, const int& col) const;
 	Piece* GetRandomPiece(const PieceColor& color) const;
 	Piece* GetRandomPiece() const; // Get random piece from the active color

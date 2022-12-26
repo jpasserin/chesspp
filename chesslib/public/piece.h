@@ -45,15 +45,17 @@ public:
 		std::cout << "Piece Destroyed" << std::endl;
 	}
 
-protected:
-	std::vector<SquareCoordinate> GetDirectionMoves(const std::vector<std::pair<int, int>> directions, bool recursive) const;
+	Piece(const Piece&) = delete; // Prevent copies of the class
 
-public:
 	std::vector<SquareCoordinate> virtual GetLegalMoves() const = 0; // Returns the legal squares to move the piece to
 	std::optional<SquareCoordinate> GetRandomLegalMove() const;
 	virtual char GetSymbol() const { return Symbol; }
 	virtual const char* GetName() const { return "Piece"; }
 	friend std::ostream& operator<<(std::ostream& os, const Piece& piece);
+
+protected:
+	std::vector<SquareCoordinate> GetDirectionMoves(const std::vector<std::pair<int, int>> directions, bool recursive) const;
+
 };
 
 
